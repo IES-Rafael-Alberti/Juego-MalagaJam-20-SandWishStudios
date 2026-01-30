@@ -15,3 +15,12 @@ offset_top = 231.0
 offset_right = 639.0
 offset_bottom = 359.0
 texture = ExtResource("2_eqnrb")
+
+[node name="Mascaras" type="TextureRect" parent="Cliente"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 17.0
+offset_right = 105.0
+offset_bottom = 81.0
+texture = ExtResource("2_eqnrb")
+expand_mode = 1
