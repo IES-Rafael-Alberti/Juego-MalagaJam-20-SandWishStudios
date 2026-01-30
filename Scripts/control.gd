@@ -58,6 +58,6 @@ func _on_boton_no_pressed() -> void:
 
 func _generar_mascara() -> void:
 	
-	var rng = randi_range(0, mascaras_tiki.size())
-
-	mascaras.texture = mascaras_tiki[rng]
+	var rng = randi_range(0, mascaras_tiki.size() - 1)
+	
+	mascaras.texture = mascaras_tiki[rng].icon
