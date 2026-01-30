@@ -24,17 +24,25 @@ func _ready() -> void:
 	
 	_cambioMascaras()
 	
+	# --- INICIO RESOLUCIÓN CONFLICTO ---
+	# Usamos la lógica de development porque define centro_x y usa las variables correctas
 	var centro_x = get_viewport_rect().size.x / 2
+	
+	# Colocamos al cliente y la máscara fuera de la pantalla (izquierda)
 	cliente.global_position.x = -cliente.size.x
 	nodo_mascara_visual.global_position.x = -nodo_mascara_visual.size.x
+	# --- FIN RESOLUCIÓN CONFLICTO ---
 	
 	var destino_final = centro_x - (cliente.size.x / 2)
 	var destino_final_mascaras = centro_x - (nodo_mascara_visual.size.x / 2)
 	
 	var tween = create_tween().set_parallel(true)
 	
+	# --- INICIO RESOLUCIÓN CONFLICTO TWEEN ---
+	# Usamos 'tween' en lugar de 'tween_entrada' para coincidir con la variable creada arriba
 	tween.tween_property(cliente, "global_position:x", destino_final, 0.8)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	# --- FIN RESOLUCIÓN CONFLICTO TWEEN ---
 		
 	tween.tween_property(nodo_mascara_visual, "global_position:x", destino_final_mascaras, 0.8)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
