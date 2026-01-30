@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var invitado_escena = preload("res://scenes/invitado.tscn")
+@onready var invitado_escena = preload("res://Scenes/invitado.tscn")
+
 var instancia_actual = null
 @onready var timer_cambio: Timer = $TimerCambio
 @onready var progress_bar: ProgressBar = $ProgressBar

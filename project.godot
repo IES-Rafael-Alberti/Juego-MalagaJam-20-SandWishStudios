@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Juego-MalagaJam-20-SandWishStudios"
-run/main_scene="uid://diquh33dj238y"
+run/main_scene="uid://daddobmomnce1"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
