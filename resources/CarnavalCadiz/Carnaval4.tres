@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MascaraData" load_steps=3 format=3 uid="uid://b3v8r3t3c3ohg"]
+
+[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://scripts/MascaraData.gd" id="1_nc5kb"]
+[ext_resource type="Texture2D" uid="uid://byfxjedljgdsu" path="res://Assets/carnaval/carnaval4.jpg" id="1_w344x"]
+
+[resource]
+script = ExtResource("1_nc5kb")
+icon = ExtResource("1_w344x")
+metadata/_custom_type_script = "uid://cwaa4fawds7pw"

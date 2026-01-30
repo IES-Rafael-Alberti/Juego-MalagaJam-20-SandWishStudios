@@ -1,16 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://qsglw2wb265y"]
+[gd_scene load_steps=3 format=3 uid="uid://qsglw2wb265y"]
+
 
 [ext_resource type="Script" uid="uid://c7w4mbsnmrgn3" path="res://Scripts/control.gd" id="1_oebdd"]
 [ext_resource type="Texture2D" uid="uid://b8wv2v4y2b6e4" path="res://Assets/icon.svg" id="2_eqnrb"]
-[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://Scripts/MascaraData.gd" id="2_f6vr3"]
-[ext_resource type="Resource" uid="uid://c7u62ij63jscc" path="res://resources/tiki1tres.tres" id="3_f6vr3"]
-[ext_resource type="Resource" uid="uid://b6tkk40qxppmi" path="res://resources/tiki2.tres" id="4_maj6q"]
 
 [node name="Invitado" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_oebdd")
-mascaras_tiki = Array[ExtResource("2_f6vr3")]([ExtResource("3_f6vr3"), ExtResource("4_maj6q")])
 
 [node name="Cliente" type="TextureRect" parent="."]
 layout_mode = 0
@@ -18,7 +15,7 @@ offset_left = 511.0
 offset_top = 231.0
 offset_right = 639.0
 offset_bottom = 359.0
-texture = ExtResource("2_eqnrb")
+texture = SubResource("CompressedTexture2D_g87fx")
 
 [node name="Mascaras" type="TextureRect" parent="Cliente"]
 layout_mode = 0
@@ -26,5 +23,5 @@ offset_left = 25.0
 offset_top = 17.0
 offset_right = 105.0
 offset_bottom = 81.0
-texture = ExtResource("2_eqnrb")
+texture = SubResource("CompressedTexture2D_g87fx")
 expand_mode = 1

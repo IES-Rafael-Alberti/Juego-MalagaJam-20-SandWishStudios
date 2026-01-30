@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds7vlbrhjvb3x"
-path="res://.godot/imported/mascara2.png-1cc3a7cecf5a8331cbd398c45649e063.ctex"
+uid="uid://dbm7e6dw2y6un"
+path="res://.godot/imported/japon1.jpg-0aed337ec463df272a8781c05b073b37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/mascara2.png"
-dest_files=["res://.godot/imported/mascara2.png-1cc3a7cecf5a8331cbd398c45649e063.ctex"]
+source_file="res://Assets/japon/japon1.jpg"
+dest_files=["res://.godot/imported/japon1.jpg-0aed337ec463df272a8781c05b073b37.ctex"]
 
 [params]
 
