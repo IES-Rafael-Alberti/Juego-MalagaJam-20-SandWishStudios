@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4yvy8tl4n6ud"
-path="res://.godot/imported/mascara1.png-47f5d99ffccf77fd34ad366b2f47619a.ctex"
+uid="uid://d4gw6jdmhsetu"
+path="res://.godot/imported/carnaval3.jpg-38af7d42e367ee96cdb9a3cec3b548f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/mascara1.png"
-dest_files=["res://.godot/imported/mascara1.png-47f5d99ffccf77fd34ad366b2f47619a.ctex"]
+source_file="res://Assets/carnaval/carnaval3.jpg"
+dest_files=["res://.godot/imported/carnaval3.jpg-38af7d42e367ee96cdb9a3cec3b548f4.ctex"]
 
 [params]
 

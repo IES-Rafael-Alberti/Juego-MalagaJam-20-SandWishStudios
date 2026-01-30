@@ -2,7 +2,7 @@ extends Resource
 
 class_name  MascaraData
 
-enum tipos {Tiki, Animal, Vegetal}
+enum tipos {Tiki, Japon, CarnavalCadiz, Mexicano}
 
 @export var name : String
 @export var tipo : tipos
@@ -11,8 +11,3 @@ enum tipos {Tiki, Animal, Vegetal}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
