@@ -17,12 +17,19 @@ func _ready() -> void:
 	
 	cliente.global_position.x = -cliente.size.x 
 	
-	mascaras.global_position.x = -mascaras.size.x
+	print(cliente.global_position.x)
+	
+	mascaras.global_position.x = -cliente.size.x 
+	
+	print(mascaras.global_position.x)
 	
 	var tween_entrada = create_tween()
 	var tween_entrada_mascaras = create_tween()
 	var destino_final = centro_x - (cliente.size.x / 2)
 	var destino_final_mascaras = centro_x - (mascaras.size.x / 2)
+	
+	print(destino_final)
+	print(destino_final_mascaras)
 	
 	tween_entrada.tween_property(cliente, "global_position:x", destino_final, 0.8)\
 		.set_trans(Tween.TRANS_QUAD)\
