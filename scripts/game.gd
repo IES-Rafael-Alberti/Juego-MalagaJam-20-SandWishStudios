@@ -11,6 +11,8 @@ func generarInvitado():
 	add_child(instancia_actual)
 	
 	instancia_actual.se_ha_ido.connect(generarInvitado)
+	
+	instancia_actual._generar_mascara()
 
 func dejarPasar():
 	if is_instance_valid(instancia_actual):
