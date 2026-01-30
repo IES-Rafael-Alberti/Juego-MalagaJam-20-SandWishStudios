@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MascaraData" load_steps=3 format=3 uid="uid://8wiwdkgkapdw"]
+
+[ext_resource type="Texture2D" uid="uid://bak8rfhfcim58" path="res://Assets/tiki/tiki3.jpg" id="1_nnwga"]
+[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://scripts/MascaraData.gd" id="2_58dps"]
+
+[resource]
+script = ExtResource("2_58dps")
+icon = ExtResource("1_nnwga")
+metadata/_custom_type_script = "uid://cwaa4fawds7pw"

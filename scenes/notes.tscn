@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://k5lqehb26keb"]
 
-[ext_resource type="Texture2D" uid="uid://b8wv2v4y2b6e4" path="res://Assets/icon.svg" id="1_237bn"]
+[ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="1_237bn"]
 
 [node name="notes" type="Control"]
 layout_mode = 3
