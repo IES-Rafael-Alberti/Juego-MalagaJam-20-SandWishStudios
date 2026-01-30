@@ -9,6 +9,8 @@ var instancia_actual = null
 var categoria_global: String = ""
 
 func _ready() -> void:
+	randomize()
+	
 	progress_bar.max_value = timer_cambio.wait_time
 	progress_bar.value = timer_cambio.wait_time
 	
