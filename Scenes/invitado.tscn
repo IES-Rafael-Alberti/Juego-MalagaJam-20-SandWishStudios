@@ -1,13 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://qsglw2wb265y"]
-
+[gd_scene load_steps=23 format=3 uid="uid://bpl7w2kd24tit"]
 
 [ext_resource type="Script" uid="uid://c7w4mbsnmrgn3" path="res://Scripts/control.gd" id="1_oebdd"]
-[ext_resource type="Texture2D" uid="uid://b8wv2v4y2b6e4" path="res://Assets/icon.svg" id="2_eqnrb"]
+[ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="2_eqnrb"]
+[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://Scripts/MascaraData.gd" id="2_m5c13"]
+[ext_resource type="Resource" uid="uid://l7b0s4xkqluo" path="res://resources/Mexicana/mexicana1.tres" id="3_x20te"]
+[ext_resource type="Resource" uid="uid://cp50genednw8f" path="res://resources/Mexicana/mexicana2.tres" id="4_1k44g"]
+[ext_resource type="Resource" uid="uid://b0tyiwwmjdekd" path="res://resources/Mexicana/mexicana3.tres" id="5_nui76"]
+[ext_resource type="Resource" uid="uid://b4afj5u6f0ey0" path="res://resources/Mexicana/mexicana4.tres" id="6_aoows"]
+[ext_resource type="Resource" uid="uid://crgkchia6ql0m" path="res://resources/Mexicana/mexicana5.tres" id="7_sr3rl"]
+[ext_resource type="Resource" uid="uid://c7u62ij63jscc" path="res://resources/tiki/tiki1.tres" id="8_ktfuw"]
+[ext_resource type="Resource" uid="uid://b6tkk40qxppmi" path="res://resources/tiki/tiki2.tres" id="9_e642p"]
+[ext_resource type="Resource" uid="uid://8wiwdkgkapdw" path="res://resources/tiki/tiki3.tres" id="10_040fu"]
+[ext_resource type="Resource" uid="uid://cfvn7uyoxyotv" path="res://resources/tiki/tiki4.tres" id="11_qqayf"]
+[ext_resource type="Resource" uid="uid://d4hthm6uwm4xy" path="res://resources/tiki/tiki5.tres" id="12_o7750"]
+[ext_resource type="Resource" uid="uid://hkd8fjhv06du" path="res://resources/CarnavalCadiz/Carnaval1.tres" id="13_egyrs"]
+[ext_resource type="Resource" uid="uid://bp22wg520bmuk" path="res://resources/CarnavalCadiz/Carnaval2.tres" id="14_sgdo2"]
+[ext_resource type="Resource" uid="uid://dr256wlr8ciad" path="res://resources/CarnavalCadiz/Carnaval3.tres" id="15_7y78i"]
+[ext_resource type="Resource" uid="uid://b3v8r3t3c3ohg" path="res://resources/CarnavalCadiz/Carnaval4.tres" id="16_sj07f"]
+[ext_resource type="Resource" uid="uid://cabbybb6ppihj" path="res://resources/japon/japon5.tres" id="17_4hrnb"]
+[ext_resource type="Resource" uid="uid://bsl2wmg2vt87e" path="res://resources/japon/japon1.tres" id="18_rv72e"]
+[ext_resource type="Resource" uid="uid://d2lsomdms5jnx" path="res://resources/japon/japon2.tres" id="19_oj1fu"]
+[ext_resource type="Resource" uid="uid://c2cc4w6uds0pf" path="res://resources/japon/japon3.tres" id="20_q6ist"]
+[ext_resource type="Resource" uid="uid://bbeni7lyld7gx" path="res://resources/japon/japon4.tres" id="21_b3cf0"]
 
 [node name="Invitado" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_oebdd")
+mascaras_mexicanas = Array[ExtResource("2_m5c13")]([ExtResource("3_x20te"), ExtResource("4_1k44g"), ExtResource("5_nui76"), ExtResource("6_aoows"), ExtResource("7_sr3rl")])
+mascaras_tiki = Array[ExtResource("2_m5c13")]([ExtResource("8_ktfuw"), ExtResource("9_e642p"), ExtResource("10_040fu"), ExtResource("11_qqayf"), ExtResource("12_o7750")])
+mascaras_carnaval = Array[ExtResource("2_m5c13")]([ExtResource("13_egyrs"), ExtResource("14_sgdo2"), ExtResource("15_7y78i"), ExtResource("16_sj07f"), ExtResource("17_4hrnb")])
+mascaras_japon = Array[ExtResource("2_m5c13")]([ExtResource("18_rv72e"), ExtResource("19_oj1fu"), ExtResource("20_q6ist"), ExtResource("21_b3cf0"), ExtResource("17_4hrnb")])
 
 [node name="Cliente" type="TextureRect" parent="."]
 layout_mode = 0
@@ -15,7 +38,7 @@ offset_left = 511.0
 offset_top = 231.0
 offset_right = 639.0
 offset_bottom = 359.0
-texture = SubResource("CompressedTexture2D_g87fx")
+texture = ExtResource("2_eqnrb")
 
 [node name="Mascaras" type="TextureRect" parent="Cliente"]
 layout_mode = 0
@@ -23,5 +46,5 @@ offset_left = 25.0
 offset_top = 17.0
 offset_right = 105.0
 offset_bottom = 81.0
-texture = SubResource("CompressedTexture2D_g87fx")
+texture = ExtResource("2_eqnrb")
 expand_mode = 1

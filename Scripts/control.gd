@@ -22,60 +22,44 @@ func _ready() -> void:
 		"japon": mascaras_japon
 	}
 	
-	_cambioMascaras()
-	
-	# --- INICIO RESOLUCIÓN CONFLICTO ---
-	# Usamos la lógica de development porque define centro_x y usa las variables correctas
 	var centro_x = get_viewport_rect().size.x / 2
-	
-	# Colocamos al cliente y la máscara fuera de la pantalla (izquierda)
 	cliente.global_position.x = -cliente.size.x
 	nodo_mascara_visual.global_position.x = -nodo_mascara_visual.size.x
-	# --- FIN RESOLUCIÓN CONFLICTO ---
 	
 	var destino_final = centro_x - (cliente.size.x / 2)
 	var destino_final_mascaras = centro_x - (nodo_mascara_visual.size.x / 2)
 	
 	var tween = create_tween().set_parallel(true)
-	
-	# --- INICIO RESOLUCIÓN CONFLICTO TWEEN ---
-	# Usamos 'tween' en lugar de 'tween_entrada' para coincidir con la variable creada arriba
 	tween.tween_property(cliente, "global_position:x", destino_final, 0.8)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	# --- FIN RESOLUCIÓN CONFLICTO TWEEN ---
-		
 	tween.tween_property(nodo_mascara_visual, "global_position:x", destino_final_mascaras, 0.8)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
 	tween.set_parallel(false)
 	tween.tween_callback(func(): puede_interactuar = true)
 
-
-func _cambioMascaras() -> void:
-	var categorias = mascarasDict.keys() 
-	var opciones_validas: Array = []
-	
+func obtener_otra_categoria(actual: String) -> String:
+	var categorias = mascarasDict.keys()
+	var opciones = []
 	for c in categorias:
-		if c != categoria_actual:
-			opciones_validas.append(c)
+		if c != actual:
+			opciones.append(c)
 	
-	if opciones_validas.size() > 0:
-		categoria_actual = opciones_validas.pick_random()
-		_generar_mascara()
-	else:
-		categoria_actual = categorias.pick_random()
-		_generar_mascara()
+	if opciones.size() > 0:
+		return opciones.pick_random()
+	return categorias.pick_random()
 
 func _generar_mascara() -> void:
+	if categoria_actual == "":
+		categoria_actual = mascarasDict.keys().pick_random()
+
 	var lista_mascaras: Array[MascaraData] = mascarasDict[categoria_actual]
 	
 	if lista_mascaras.size() > 0:
 		var rng = randi_range(0, lista_mascaras.size() - 1)
 		nodo_mascara_visual.texture = lista_mascaras[rng].icon
-		print("Categoría seleccionada: ", categoria_actual) # Debug
 	else:
-		push_warning("La lista de máscaras para " + categoria_actual + " está vacía.")
-
+		push_warning("Lista vacía para: " + categoria_actual)
 
 func _on_boton_si_pressed() -> void:
 	if not puede_interactuar: return
@@ -87,11 +71,9 @@ func _on_boton_no_pressed() -> void:
 
 func _animar_salida(destino_x: float) -> void:
 	puede_interactuar = false
-	
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(cliente, "global_position:x", destino_x, 0.5)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-
 	tween.tween_property(nodo_mascara_visual, "global_position:x", destino_x, 0.5)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
