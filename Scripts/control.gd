@@ -7,6 +7,10 @@ var puede_interactuar: bool = false
 
 @onready var mascaras: TextureRect = $Cliente/Mascaras
 
+@export var mascaras_tiki : Array[MascaraData]
+@export var mascaras_animal : Array[MascaraData]
+@export var mascaras_vegetal : Array[MascaraData]
+
 
 func _ready() -> void:
 	var centro_x = get_viewport_rect().size.x / 2
@@ -53,5 +57,7 @@ func _on_boton_no_pressed() -> void:
 	)
 
 func _generar_mascara() -> void:
-	print("Peruano")
-	mascaras.texture = load("res://ruta/imagen.png")
+	
+	var rng = randi_range(0, mascaras_tiki.size())
+
+	mascaras.texture = mascaras_tiki[rng]
