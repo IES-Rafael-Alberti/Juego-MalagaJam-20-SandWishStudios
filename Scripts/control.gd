@@ -1,34 +1,42 @@
 extends Control
 
+signal se_ha_ido
+
 @onready var cliente: TextureRect = $Cliente
-@onready var boton_si: Button = $BotonSi
-@onready var boton_no: Button = $BotonNo
+var puede_interactuar: bool = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	var centro_x = get_viewport_rect().size.x / 2
 	
+	cliente.global_position.x = -cliente.size.x 
+	
+	var tween_entrada = create_tween()
+	var destino_final = centro_x - (cliente.size.x / 2)
+	
+	tween_entrada.tween_property(cliente, "global_position:x", destino_final, 0.8)\
+		.set_trans(Tween.TRANS_QUAD)\
+		.set_ease(Tween.EASE_OUT)
+	
+	tween_entrada.tween_callback(func(): puede_interactuar = true)
+
 func _on_boton_si_pressed() -> void:
-	
-	#print("Pa entro")
+	if not puede_interactuar: return
+	puede_interactuar = false
 	
 	var tween = create_tween()
-	
-	tween.tween_property($Cliente, "position", $Cliente.position + Vector2(350, 0), 0.5)
-	
-	tween.tween_callback($Cliente.queue_free)
-	
+	tween.tween_property(cliente, "global_position:x", get_viewport_rect().size.x + 100, 0.5)
+	tween.tween_callback(func(): 
+		se_ha_ido.emit()
+		queue_free()
+	)
+
 func _on_boton_no_pressed() -> void:
-	
-	#print("Denegado")
+	if not puede_interactuar: return
+	puede_interactuar = false
 	
 	var tween = create_tween()
-	
-	tween.tween_property($Cliente, "position", $Cliente.position + Vector2(-350, 0), 0.5)
-	
-	tween.tween_callback($Cliente.queue_free)
+	tween.tween_property(cliente, "global_position:x", -cliente.size.x - 100, 0.5)
+	tween.tween_callback(func(): 
+		se_ha_ido.emit()
+		queue_free()
+	)

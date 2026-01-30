@@ -1,27 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwim8psvdo5h"]
+[gd_scene load_steps=2 format=3 uid="uid://k5lqehb26keb"]
 
-[ext_resource type="Script" path="res://scripts/notes.gd" id="1_00aod"]
-[ext_resource type="Texture2D" uid="uid://b8wv2v4y2b6e4" path="res://icon.svg" id="1_237bn"]
+[ext_resource type="Texture2D" uid="uid://b8wv2v4y2b6e4" path="res://Assets/icon.svg" id="1_237bn"]
 
-[node name="Node2D" type="Control"]
+[node name="notes" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_00aod")
 
 [node name="Notas" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 354.0
-offset_right = 906.0
+offset_top = 267.0
+offset_right = 653.0
 offset_bottom = 520.0
 texture = ExtResource("1_237bn")
 
 [node name="Fruta" type="TextureRect" parent="."]
 modulate = Color(0.39928645, 0.69376135, 5.7756904e-07, 1)
 layout_mode = 0
-offset_left = 449.0
-offset_top = 128.0
-offset_right = 577.0
-offset_bottom = 256.0
+offset_left = 391.0
+offset_top = 302.0
+offset_right = 519.0
+offset_bottom = 430.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
 
 [node name="FrutaLb" type="Label" parent="Fruta"]
@@ -35,10 +35,11 @@ text = "Fruta"
 
 [node name="Animales" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 449.0
-offset_top = 320.0
-offset_right = 577.0
-offset_bottom = 448.0
+offset_left = 395.0
+offset_top = 410.0
+offset_right = 523.0
+offset_bottom = 538.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
 
 [node name="AnimalesLb" type="Label" parent="Animales"]
@@ -53,10 +54,11 @@ text = "Animales"
 [node name="Bien" type="TextureRect" parent="."]
 modulate = Color(0, 1, 0.1764706, 1)
 layout_mode = 0
-offset_left = 704.0
-offset_top = 128.0
-offset_right = 832.0
-offset_bottom = 256.0
+offset_left = 536.0
+offset_top = 407.0
+offset_right = 664.0
+offset_bottom = 535.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
 
 [node name="BIenLb" type="Label" parent="Bien"]
@@ -71,10 +73,11 @@ text = "Bien"
 [node name="Mal" type="TextureRect" parent="."]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 705.0
-offset_top = 301.0
-offset_right = 833.0
-offset_bottom = 429.0
+offset_left = 536.0
+offset_top = 305.0
+offset_right = 664.0
+offset_bottom = 433.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
 
 [node name="MalLb" type="Label" parent="Mal"]
@@ -85,11 +88,3 @@ offset_right = 88.0
 offset_bottom = 79.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Mal"
-
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 966.0
-offset_top = 407.0
-offset_right = 1094.0
-offset_bottom = 535.0
-texture_normal = ExtResource("1_237bn")

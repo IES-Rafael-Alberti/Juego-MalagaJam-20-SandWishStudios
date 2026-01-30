@@ -1,26 +1,21 @@
 extends Node2D
 
-@onready var entra: TextureButton = $PanelInf/Entra
-@onready var fuera: TextureButton = $PanelInf/Fuera
-#@onready var invitado = preload("res://scenes/invitado.tscn")
+@onready var invitado_escena = preload("res://scenes/invitado.tscn")
+var instancia_actual = null
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func dejarPasar():
-	pass
-
-func dejarSalir():
-	pass
+	generarInvitado()
 
 func generarInvitado():
-	#var invitado_instance = invitado.instance()
-	#add_child(invitado_instance)
-	pass
+	instancia_actual = invitado_escena.instantiate()
+	add_child(instancia_actual)
+	
+	instancia_actual.se_ha_ido.connect(generarInvitado)
+
+func dejarPasar():
+	if is_instance_valid(instancia_actual):
+		instancia_actual._on_boton_si_pressed()
+
+func dejarSalir():
+	if is_instance_valid(instancia_actual):
+		instancia_actual._on_boton_no_pressed()
