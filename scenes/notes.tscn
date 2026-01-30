@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://k5lqehb26keb"]
+
+[ext_resource type="Texture2D" uid="uid://b8wv2v4y2b6e4" path="res://Assets/icon.svg" id="1_237bn"]
+
+[node name="notes" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Notas" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 267.0
+offset_right = 653.0
+offset_bottom = 520.0
+texture = ExtResource("1_237bn")
+
+[node name="Fruta" type="TextureRect" parent="."]
+modulate = Color(0.39928645, 0.69376135, 5.7756904e-07, 1)
+layout_mode = 0
+offset_left = 391.0
+offset_top = 302.0
+offset_right = 519.0
+offset_bottom = 430.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_237bn")
+
+[node name="FrutaLb" type="Label" parent="Fruta"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 56.0
+offset_right = 82.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fruta"
+
+[node name="Animales" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 410.0
+offset_right = 523.0
+offset_bottom = 538.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_237bn")
+
+[node name="AnimalesLb" type="Label" parent="Animales"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 56.0
+offset_right = 104.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Animales"
+
+[node name="Bien" type="TextureRect" parent="."]
+modulate = Color(0, 1, 0.1764706, 1)
+layout_mode = 0
+offset_left = 536.0
+offset_top = 407.0
+offset_right = 664.0
+offset_bottom = 535.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_237bn")
+
+[node name="BIenLb" type="Label" parent="Bien"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 56.0
+offset_right = 88.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Bien"
+
+[node name="Mal" type="TextureRect" parent="."]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 536.0
+offset_top = 305.0
+offset_right = 664.0
+offset_bottom = 433.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_237bn")
+
+[node name="MalLb" type="Label" parent="Mal"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 56.0
+offset_right = 88.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Mal"

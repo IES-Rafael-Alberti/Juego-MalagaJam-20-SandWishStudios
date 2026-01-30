@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://daddobmomnce1"]
+
+[ext_resource type="Texture2D" uid="uid://b8wv2v4y2b6e4" path="res://Assets/icon.svg" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://b5ugfnb8bwnqs" path="res://Scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" path="res://Scenes/notes.tscn" id="3_wrm1d"]
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_yqjtg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 324)
+
+[node name="PanelInf" type="TextureRect" parent="."]
+offset_left = 160.0
+offset_top = 482.0
+offset_right = 989.0
+offset_bottom = 773.0
+texture = ExtResource("1_uwrxv")
+
+[node name="Fuera" type="TextureButton" parent="PanelInf"]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 81.0
+offset_right = 209.0
+offset_bottom = 209.0
+texture_normal = ExtResource("1_uwrxv")
+metadata/_edit_use_anchors_ = true
+
+[node name="Entra" type="TextureButton" parent="PanelInf"]
+layout_mode = 0
+offset_left = 627.0
+offset_top = 86.0
+offset_right = 755.0
+offset_bottom = 214.0
+texture_normal = ExtResource("1_uwrxv")
+
+[node name="PanelDer" type="TextureRect" parent="."]
+offset_left = 976.0
+offset_top = -107.0
+offset_right = 1147.0
+offset_bottom = 767.0
+texture = ExtResource("1_uwrxv")
+
+[node name="PanelIzq" type="TextureRect" parent="."]
+offset_left = -5.0
+offset_top = -107.0
+offset_right = 177.0
+offset_bottom = 769.0
+texture = ExtResource("1_uwrxv")
+
+[node name="notes" parent="." instance=ExtResource("3_wrm1d")]
+offset_left = 64.0
+offset_top = 226.0
+offset_right = 64.0
+offset_bottom = 226.0
+
+[connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
+[connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
