@@ -14,6 +14,8 @@ var categoria_actual: String = ""
 @export var mascaras_carnaval : Array[MascaraData]
 @export var mascaras_japon : Array[MascaraData]
 
+@onready var tiempo_limite: Timer = $TiempoLimite
+
 func _ready() -> void:
 	mascarasDict = {
 		"mexicanas": mascaras_mexicanas,
@@ -37,6 +39,10 @@ func _ready() -> void:
 	
 	tween.set_parallel(false)
 	tween.tween_callback(func(): puede_interactuar = true)
+	
+	tiempo_limite.start()
+	
+	tiempo_limite.wait_time
 
 func obtener_otra_categoria(actual: String) -> String:
 	var categorias = mascarasDict.keys()
@@ -82,3 +88,7 @@ func _animar_salida(destino_x: float) -> void:
 		se_ha_ido.emit()
 		queue_free()
 	)
+
+func _on_tiempo_limite_timeout() -> void:
+	print("Se acabó el tiempo")
+	_animar_salida(-cliente.size.x - 100) # Replace with function body.
