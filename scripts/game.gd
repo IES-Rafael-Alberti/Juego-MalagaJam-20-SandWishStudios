@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var invitado_escena = preload("res://Scenes/invitado.tscn")
+@onready var notes = $notes
 
 var instancia_actual = null
 @onready var timer_cambio: Timer = $TimerCambio
@@ -35,6 +36,8 @@ func generarInvitado():
 	
 	if categoria_global == "":
 		categoria_global = instancia_actual.categoria_actual
+		notes.actualizar_estado(categoria_global)
+
 
 func dejarPasar():
 	if is_instance_valid(instancia_actual):
@@ -49,5 +52,7 @@ func cambioFiesta():
 		var nueva_cat = instancia_actual.obtener_otra_categoria(categoria_global)
 		categoria_global = nueva_cat
 		print("¡Cambio de fiesta! Siguiente invitado será: ", categoria_global)
+
+		notes.actualizar_estado(categoria_global)
 		
 		timer_cambio.start()

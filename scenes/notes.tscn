@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://k5lqehb26keb"]
+[gd_scene load_steps=7 format=3 uid="uid://k5lqehb26keb"]
 
 [ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="1_237bn"]
+[ext_resource type="Script" uid="uid://d3rehpj5ds6r" path="res://scenes/notes.gd" id="1_r6urf"]
 [ext_resource type="Texture2D" uid="uid://cpfk3amstw6uo" path="res://Assets/tiki/tiki1.jpg" id="2_uy50o"]
 [ext_resource type="Texture2D" uid="uid://bd1necqholudf" path="res://Assets/carnaval/carnaval1.jpg" id="3_dq583"]
 [ext_resource type="Texture2D" uid="uid://yufok0yx246g" path="res://Assets/mexicana/mexicana1.jpg" id="4_dq583"]
@@ -9,6 +10,7 @@
 [node name="notes" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_r6urf")
 
 [node name="Notas" type="TextureRect" parent="."]
 layout_mode = 0
@@ -52,10 +54,10 @@ expand_mode = 1
 layout_mode = 0
 offset_left = 40.0
 offset_top = 48.0
-offset_right = 84.0
-offset_bottom = 71.0
+offset_right = 109.0
+offset_bottom = 97.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Japon"
+text = "Carnaval"
 
 [node name="mexicana" type="TextureRect" parent="."]
 layout_mode = 0
@@ -93,9 +95,9 @@ offset_top = 64.0
 offset_right = 104.0
 offset_bottom = 87.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Animales"
+text = "Japon"
 
-[node name="Bien" type="TextureRect" parent="."]
+[node name="Estado1" type="TextureRect" parent="."]
 modulate = Color(0, 1, 0.1764706, 1)
 layout_mode = 0
 offset_left = 536.0
@@ -105,7 +107,7 @@ offset_bottom = 416.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
 
-[node name="BIenLb" type="Label" parent="Bien"]
+[node name="Estado1Lb" type="Label" parent="Estado1"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 56.0
@@ -114,7 +116,7 @@ offset_bottom = 79.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Bien"
 
-[node name="Mal" type="TextureRect" parent="."]
+[node name="Estado2" type="TextureRect" parent="."]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_left = 536.0
@@ -124,7 +126,7 @@ offset_bottom = 488.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
 
-[node name="MalLb" type="Label" parent="Mal"]
+[node name="Estado2Lb" type="Label" parent="Estado2"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 56.0
@@ -133,7 +135,7 @@ offset_bottom = 79.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Mal"
 
-[node name="Mal2" type="TextureRect" parent="."]
+[node name="Estado3" type="TextureRect" parent="."]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_left = 536.0
@@ -143,7 +145,7 @@ offset_bottom = 560.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
 
-[node name="MalLb" type="Label" parent="Mal2"]
+[node name="Estado3Lb" type="Label" parent="Estado3"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 56.0
@@ -152,7 +154,7 @@ offset_bottom = 79.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Mal"
 
-[node name="Mal3" type="TextureRect" parent="."]
+[node name="Estado4" type="TextureRect" parent="."]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_left = 536.0
@@ -162,7 +164,7 @@ offset_bottom = 632.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
 
-[node name="MalLb" type="Label" parent="Mal3"]
+[node name="Estado4Lb" type="Label" parent="Estado4"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 56.0
