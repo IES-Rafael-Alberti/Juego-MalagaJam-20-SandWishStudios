@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cocm6dtpntqeq"
-path="res://.godot/imported/mascara3.png-a776aa95e3b4c33fe8c210fcf80ea745.ctex"
+uid="uid://cpfk3amstw6uo"
+path="res://.godot/imported/tiki1.jpg-9656f39de7137112a507eb36897b419a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/mascara3.png"
-dest_files=["res://.godot/imported/mascara3.png-a776aa95e3b4c33fe8c210fcf80ea745.ctex"]
+source_file="res://Assets/tiki/tiki1.jpg"
+dest_files=["res://.godot/imported/tiki1.jpg-9656f39de7137112a507eb36897b419a.ctex"]
 
 [params]
 
