@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://qsglw2wb265y"]
+
+[ext_resource type="Script" uid="uid://c7w4mbsnmrgn3" path="res://Scripts/control.gd" id="1_enfj7"]
+[ext_resource type="Texture2D" uid="uid://b8wv2v4y2b6e4" path="res://Assets/icon.svg" id="2_qlwo8"]
+
+[node name="Invitado" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_enfj7")
+
+[node name="Cliente" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 231.0
+offset_right = 639.0
+offset_bottom = 359.0
+texture = ExtResource("2_qlwo8")
+
+[node name="BotonSi" type="Button" parent="."]
+layout_mode = 0
+offset_left = 639.0
+offset_top = 423.0
+offset_right = 767.0
+offset_bottom = 499.0
+text = "Si"
+
+[node name="BotonNo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 423.0
+offset_right = 525.0
+offset_bottom = 494.0
+text = "No
+"
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(266, 341)
+scale = Vector2(0.60546875, 3.7656248)
+texture = ExtResource("2_qlwo8")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(897, 359)
+scale = Vector2(0.60546875, 3.7656248)
+texture = ExtResource("2_qlwo8")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(576.87494, 598)
+rotation = -1.5707964
+scale = Vector2(0.60546875, 4.4199224)
+texture = ExtResource("2_qlwo8")
+
+[connection signal="pressed" from="BotonSi" to="." method="_on_boton_si_pressed"]
+[connection signal="pressed" from="BotonNo" to="." method="_on_boton_no_pressed"]
