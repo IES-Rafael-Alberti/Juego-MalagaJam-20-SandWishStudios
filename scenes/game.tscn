@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://daddobmomnce1"]
+[gd_scene load_steps=9 format=3 uid="uid://daddobmomnce1"]
 
-[ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://b5ugfnb8bwnqs" path="res://Scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://drsnw21y7edn7" path="res://Assets/ui/PP.png" id="2_3dryh"]
+[ext_resource type="Texture2D" uid="uid://be2gh4ykdcxcx" path="res://Assets/botones/RedUp.png" id="3_wowpa"]
 [ext_resource type="PackedScene" uid="uid://k5lqehb26keb" path="res://Scenes/notes.tscn" id="3_wrm1d"]
+[ext_resource type="Texture2D" uid="uid://bqeb08ck3pwid" path="res://Assets/botones/RedDown.png" id="4_i6g32"]
+[ext_resource type="Texture2D" uid="uid://cdun5lw0sdndn" path="res://Assets/ui/BG.png" id="4_wowpa"]
+[ext_resource type="Texture2D" uid="uid://chwwh7aqavjkj" path="res://Assets/botones/GreenUp.png" id="5_1l0tm"]
+[ext_resource type="Texture2D" uid="uid://doatdjo2wws5" path="res://Assets/botones/GreenDown.png" id="6_v158k"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -11,45 +16,41 @@ script = ExtResource("1_yqjtg")
 position = Vector2(575, 324)
 
 [node name="PanelInf" type="TextureRect" parent="."]
-offset_left = 160.0
-offset_top = 482.0
-offset_right = 989.0
-offset_bottom = 773.0
-texture = ExtResource("1_uwrxv")
+offset_left = -3.0
+offset_top = -112.0
+offset_right = 1149.0
+offset_bottom = 752.0
+pivot_offset = Vector2(570, 285)
+texture = ExtResource("2_3dryh")
 
 [node name="Fuera" type="TextureButton" parent="PanelInf"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.12424608
-anchor_right = 0.12424608
-offset_left = 81.0
-offset_top = 81.0
-offset_right = 209.0
-offset_bottom = 209.0
-texture_normal = ExtResource("1_uwrxv")
-metadata/_edit_use_anchors_ = true
+anchor_left = -0.014475271
+anchor_top = 0.0068728523
+anchor_right = 0.09047045
+anchor_bottom = 0.16838488
+offset_left = 263.6755
+offset_top = 435.06186
+offset_right = 426.11136
+offset_bottom = 563.0618
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("3_wowpa")
+texture_pressed = ExtResource("4_i6g32")
+stretch_mode = 3
 
 [node name="Entra" type="TextureButton" parent="PanelInf"]
 layout_mode = 0
-offset_left = 400.0
-offset_top = 81.0
-offset_right = 528.0
-offset_bottom = 209.0
-texture_normal = ExtResource("1_uwrxv")
-
-[node name="PanelDer" type="TextureRect" parent="."]
-offset_left = 976.0
-offset_top = -107.0
-offset_right = 1147.0
-offset_bottom = 767.0
-texture = ExtResource("1_uwrxv")
-
-[node name="PanelIzq" type="TextureRect" parent="."]
-offset_left = -5.0
-offset_top = -107.0
-offset_right = 177.0
-offset_bottom = 769.0
-texture = ExtResource("1_uwrxv")
+offset_left = 693.0
+offset_top = 456.00003
+offset_right = 957.0
+offset_bottom = 697.6666
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("5_1l0tm")
+texture_pressed = ExtResource("6_v158k")
+stretch_mode = 3
 
 [node name="TimerCambio" type="Timer" parent="."]
 wait_time = 15.0
@@ -83,10 +84,18 @@ theme_override_font_sizes/font_size = 28
 text = "x 1"
 
 [node name="notes" parent="." instance=ExtResource("3_wrm1d")]
-offset_left = 499.0
-offset_top = 185.0
-offset_right = 499.0
-offset_bottom = 185.0
+offset_left = 454.0
+offset_top = 202.0
+offset_right = 454.0
+offset_bottom = 202.0
+
+[node name="fondo" type="TextureRect" parent="."]
+z_index = -100
+offset_left = 262.0
+offset_top = -112.0
+offset_right = 911.0
+offset_bottom = 295.0
+texture = ExtResource("4_wowpa")
 
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
