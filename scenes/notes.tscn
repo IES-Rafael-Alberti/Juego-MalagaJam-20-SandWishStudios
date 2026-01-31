@@ -1,7 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://k5lqehb26keb"]
 
 [ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="1_237bn"]
-[ext_resource type="Script" uid="uid://d3rehpj5ds6r" path="res://scripts/notes.gd" id="1_r6urf"]
+
+[ext_resource type="Script" path="res://scenes/notes.gd" id="1_r6urf"]
 [ext_resource type="Texture2D" uid="uid://cpfk3amstw6uo" path="res://Assets/tiki/tiki1.jpg" id="2_uy50o"]
 [ext_resource type="Texture2D" uid="uid://bd1necqholudf" path="res://Assets/carnaval/carnaval1.jpg" id="3_dq583"]
 [ext_resource type="Texture2D" uid="uid://yufok0yx246g" path="res://Assets/mexicana/mexicana1.jpg" id="4_dq583"]
