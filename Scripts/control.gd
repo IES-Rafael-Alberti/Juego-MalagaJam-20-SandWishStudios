@@ -11,6 +11,8 @@ var categoria_actual: String = ""
 var mascara_categoria: String = ""
 var esvip: bool
 
+var tiempo_maximo: float = 5.0 
+
 @export var mascaras_mexicanas : Array[MascaraData]
 @export var mascaras_tiki : Array[MascaraData]
 @export var mascaras_carnaval : Array[MascaraData]
@@ -23,6 +25,8 @@ var esvip: bool
 @onready var tiempo_limite: Timer = $TiempoLimite
 
 func _ready() -> void:
+	tiempo_limite.wait_time = tiempo_maximo
+	
 	esvip = randf() <= prob_vip
 	if esvip:
 		cliente.modulate = Color.GOLD
@@ -126,6 +130,7 @@ func _on_tiempo_limite_timeout() -> void:
 	
 func aumentar_puntuacion():
 	get_parent().puntuacion += aumento
+	get_parent().registrar_acierto()
 	print(aumento)
 	
 func reducir_puntuacion(valor: int):
