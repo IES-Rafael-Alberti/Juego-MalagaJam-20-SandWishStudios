@@ -69,6 +69,11 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
+[node name="TimerJuego" type="Timer" parent="."]
+wait_time = 100.0
+autostart = true
+
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
 [connection signal="timeout" from="TimerCambio" to="." method="cambioFiesta"]
+[connection signal="timeout" from="TimerJuego" to="." method="finJuego"]

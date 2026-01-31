@@ -77,3 +77,6 @@ func _rearmar_timer_si_timeout() -> void:
 		timeout_pausado = false
 		progress_bar.value = timer_cambio.wait_time
 		timer_cambio.start()
+		
+func finJuego():
+	get_tree().quit()
