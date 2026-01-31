@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://75xyc1xwbcy4"]
+[gd_scene load_steps=6 format=3 uid="uid://75xyc1xwbcy4"]
 
 [ext_resource type="Script" uid="uid://jyo6svf60vq6" path="res://Scripts/menu.gd" id="1_1rerr"]
 [ext_resource type="Texture2D" uid="uid://ctwee01kd60m4" path="res://Assets/ui/Play.png" id="2_wwsa2"]
 [ext_resource type="Texture2D" uid="uid://comkpar5vbyqo" path="res://Assets/ui/Menú.png" id="2_xhh6f"]
-[ext_resource type="AudioStream" uid="uid://uulwkyjvgnob" path="res://Assets/sounds/MainMenuTheme.wav" id="3_cayip"]
 [ext_resource type="Texture2D" uid="uid://cirk165vwns0j" path="res://Assets/ui/Settings.png" id="3_jsrd8"]
 [ext_resource type="FontFile" uid="uid://b0l6clpjwwmvw" path="res://Assets/fonts/UrbanRiotDEMO-B85.ttf" id="3_wbdvm"]
 
@@ -76,9 +75,7 @@ z_index = -1
 position = Vector2(576, 432)
 texture = ExtResource("2_xhh6f")
 
-[node name="BGM" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_cayip")
-autoplay = true
+[node name="BGM" type="AudioStreamPlayer" parent="."]
 
 [connection signal="mouse_entered" from="BotonPlay" to="." method="_on_boton_play_mouse_entered"]
 [connection signal="mouse_exited" from="BotonPlay" to="." method="_on_boton_play_mouse_exited"]

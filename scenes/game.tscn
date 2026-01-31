@@ -162,6 +162,8 @@ theme_override_fonts/font = ExtResource("12_rfjv2")
 theme_override_font_sizes/font_size = 47
 text = "1:40"
 
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
 [connection signal="timeout" from="TimerCambio" to="." method="cambioFiesta"]
