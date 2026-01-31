@@ -12,6 +12,7 @@ var mascara_categoria: String = ""
 var esvip: bool
 
 var tiempo_maximo: float = 5.0 
+var prob_extra := 2
 
 @export var mascaras_mexicanas : Array[MascaraData]
 @export var mascaras_tiki : Array[MascaraData]
@@ -70,8 +71,17 @@ func obtener_otra_categoria(actual: String) -> String:
 func _generar_mascara() -> void:
 	if categoria_actual == "":
 		categoria_actual = mascarasDict.keys().pick_random()
-
-	mascara_categoria = mascarasDict.keys().pick_random()
+	
+	var prob_random = randf_range(0,1)
+	
+	#print(prob_random)
+	
+	if prob_random >= 0.5:
+		mascara_categoria = mascarasDict.keys().pick_random()
+	else:
+		mascara_categoria = categoria_actual
+		
+	#print(mascara_categoria)
 
 	var lista_mascaras: Array[MascaraData] = mascarasDict[mascara_categoria]
 	
