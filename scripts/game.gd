@@ -99,4 +99,5 @@ func _actualizar_ui() -> void:
 		multiplicadorLabel.text = "x %.1f" % multiplicador
 
 func finJuego():
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://scenes/fin_juego.tscn")
+
