@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var invitado_escena = preload("res://Scenes/invitado.tscn")
+@onready var fin_juego_scene: PackedScene = preload("res://scenes/fin_juego.tscn")
 @onready var notes = $notes
 @onready var multiplicadorLabel: Label = $multiplicador
 @onready var puntuacionLabel: Label = $puntuacion
@@ -21,14 +22,18 @@ var instancia_siguiente = null
 var aciertos_totales: int = 0
 var tiempo_limite_actual: float = 5.0
 
-var puntuacion: int = 0:
+var _puntuacion: int = 0
+var puntuacion: int:
+	get: return _puntuacion
 	set(valor):
-		puntuacion = valor
+		_puntuacion = valor
 		_actualizar_ui()
 
-var multiplicador: float = 1.0:
+var _multiplicador: float = 1.0
+var multiplicador: float:
+	get: return _multiplicador
 	set(valor):
-		multiplicador = valor
+		_multiplicador = valor
 		_actualizar_ui()
 
 var categoria_global: String = ""
@@ -213,4 +218,20 @@ func _actualizar_ui() -> void:
 		multiplicadorLabel.text = "x %.1f" % multiplicador
 
 func finJuego():
-	get_tree().change_scene_to_file("res://scenes/fin_juego.tscn")
+	timer_cambio.stop()
+	set_process(false)
+
+	call_deferred("_cambiar_a_fin_juego")
+
+func _cambiar_a_fin_juego():
+	var fin_scene := fin_juego_scene.instantiate() as Control
+
+	fin_scene.puntosBase = puntuacion
+	fin_scene.multiplicador = multiplicador
+
+	# Quitar la escena actual de forma segura
+	if get_tree().current_scene:
+		get_tree().current_scene.queue_free()
+
+	get_tree().root.add_child(fin_scene)
+	get_tree().current_scene = fin_scene
