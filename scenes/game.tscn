@@ -73,6 +73,11 @@ show_percentage = false
 wait_time = 100.0
 autostart = true
 
+[node name="TiempoLimite" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="TiempoActualizado" type="Timer" parent="."]
+
 [node name="puntuacion" type="Label" parent="."]
 offset_left = 991.0
 offset_top = -48.0
@@ -92,3 +97,4 @@ text = "x 1"
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
 [connection signal="timeout" from="TimerCambio" to="." method="cambioFiesta"]
 [connection signal="timeout" from="TimerJuego" to="." method="finJuego"]
+[connection signal="timeout" from="TiempoLimite" to="." method="_on_tiempo_limite_timeout"]
