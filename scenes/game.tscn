@@ -88,6 +88,24 @@ offset_top = 185.0
 offset_right = 499.0
 offset_bottom = 185.0
 
+[node name="ProgressBarInvitado" type="TextureProgressBar" parent="."]
+offset_left = 256.0
+offset_top = -88.0
+offset_right = 320.0
+offset_bottom = -40.0
+value = 100.0
+rounded = true
+fill_mode = 4
+
+[node name="ProgressBarFinDia" type="ProgressBar" parent="."]
+offset_left = 576.0
+offset_top = -80.0
+offset_right = 976.0
+offset_bottom = -53.0
+step = 1.0
+value = 100.0
+show_percentage = false
+
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
 [connection signal="timeout" from="TimerCambio" to="." method="cambioFiesta"]

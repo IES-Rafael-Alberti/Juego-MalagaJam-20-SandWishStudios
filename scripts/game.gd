@@ -11,6 +11,10 @@ var instancia_siguiente = null
 
 @onready var timer_cambio: Timer = $TimerCambio
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var progress_bar_invitado: TextureProgressBar = $ProgressBarInvitado
+@onready var progress_bar_fin_dia: ProgressBar = $ProgressBarFinDia
+@onready var timer_juego: Timer = $TimerJuego
+
 @export var limiteDif: int = 10
 @export var reduccion_tiempo: float = 0.5 
 var aciertos_totales: int = 0
@@ -42,15 +46,26 @@ func _ready() -> void:
 	
 	generarInvitado()
 	timer_cambio.start()
+	
+	progress_bar_fin_dia.min_value = 0
+	progress_bar_fin_dia.max_value = timer_juego.wait_time
+	progress_bar_fin_dia.value = timer_juego.wait_time
+	
+	progress_bar_invitado.max_value = tiempo_limite_actual
+	print(tiempo_limite_actual)
 
 func _process(delta: float) -> void:
 	actTimerCambio()
+	actTimerFinDia()
 
 func actTimerCambio() -> void:
 	if timeout_pausado:
 		progress_bar.value = 0
 	else:
 		progress_bar.value = timer_cambio.time_left
+
+func actTimerFinDia() -> void:
+	progress_bar_fin_dia.value = timer_juego.time_left
 
 func generarInvitado():
 	# Manejo del cambio de fiesta
