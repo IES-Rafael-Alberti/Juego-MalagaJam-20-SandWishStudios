@@ -5,8 +5,10 @@ extends Node2D
 @onready var multiplicadorLabel: Label = $multiplicador
 @onready var puntuacionLabel: Label = $puntuacion
 
+@onready var btn_entra: TextureButton = $PanelInf/Entra
+@onready var btn_fuera: TextureButton = $PanelInf/Fuera
+
 var instancia_actual = null
-# Nueva variable para guardar al que espera
 var instancia_siguiente = null 
 
 @onready var timer_cambio: Timer = $TimerCambio
@@ -30,8 +32,17 @@ var categoria_global: String = ""
 var categoria_pendiente: String= ""
 var timeout_pausado := false
 
+var avisando_cambio: bool = false
+var tiempo_aviso: float = 3.0
+
+var tex_entra_normal: Texture2D
+var tex_fuera_normal: Texture2D
+
 func _ready() -> void:
 	randomize()
+	
+	tex_entra_normal = btn_entra.texture_normal
+	tex_fuera_normal = btn_fuera.texture_normal
 	
 	timer_cambio.timeout.connect(cambioFiesta)
 	
@@ -45,60 +56,77 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	actTimerCambio()
+	
+	if Input.is_action_pressed("aceptar"):
+		btn_entra.texture_normal = btn_entra.texture_pressed
+	else:
+		btn_entra.texture_normal = tex_entra_normal
+		
+	if Input.is_action_just_pressed("aceptar"):
+		dejarPasar()
+
+	if Input.is_action_pressed("expulsar"):
+		btn_fuera.texture_normal = btn_fuera.texture_pressed
+	else:
+		btn_fuera.texture_normal = tex_fuera_normal
+		
+	if Input.is_action_just_pressed("expulsar"):
+		dejarSalir()
 
 func actTimerCambio() -> void:
 	if timeout_pausado:
 		progress_bar.value = 0
 	else:
 		progress_bar.value = timer_cambio.time_left
+		
+		if timer_cambio.time_left <= tiempo_aviso and not avisando_cambio:
+			avisando_cambio = true
+			notes.iniciar_parpadeo()
+		elif timer_cambio.time_left > tiempo_aviso and avisando_cambio and categoria_pendiente == "":
+			avisando_cambio = false
+			notes.detener_parpadeo()
 
 func generarInvitado():
-	# Manejo del cambio de fiesta
 	if categoria_pendiente != "":
 		categoria_global = categoria_pendiente
 		categoria_pendiente = ""
 		notes.actualizar_estado(categoria_global)
+		notes.notificar_cambio()
+		avisando_cambio = false
 
-	# --- 1. PROMOCIÓN DEL INVITADO EN ESPERA A ACTUAL ---
 	if instancia_siguiente != null:
 		instancia_actual = instancia_siguiente
 		instancia_siguiente = null
 		
-		# Actualizamos su tiempo límite con la dificultad actual
 		instancia_actual.tiempo_maximo = tiempo_limite_actual
 		
-		# Le ordenamos entrar al centro y activarse
 		instancia_actual.avanzar_al_centro()
 		
 	else:
-		# Caso inicial: No hay nadie en cola, creamos el primero directo
 		instancia_actual = invitado_escena.instantiate()
 		instancia_actual.tiempo_maximo = tiempo_limite_actual
 		instancia_actual.en_cola = false 
 		add_child(instancia_actual)
 
-	# Configuración común del invitado actual
 	if categoria_global != "":
 		instancia_actual.categoria_actual = categoria_global
 
 	instancia_actual.se_ha_ido.connect(generarInvitado)
 	
-	# Regeneramos máscara por si la categoría cambió mientras estaba en cola
 	instancia_actual._generar_mascara()
 
 	if categoria_global == "":
 		categoria_global = instancia_actual.categoria_actual
 		notes.actualizar_estado(categoria_global)
 		
-	# --- 2. GENERAR EL NUEVO INVITADO DE LA COLA ---
 	_crear_invitado_en_cola()
 
 func _crear_invitado_en_cola():
 	instancia_siguiente = invitado_escena.instantiate()
 	instancia_siguiente.tiempo_maximo = tiempo_limite_actual
-	instancia_siguiente.en_cola = true # Importante: Marcamos que va a la cola
+	instancia_siguiente.en_cola = true
 	
-	add_child(instancia_siguiente) # Al añadirlo, control.gd ejecuta su _ready y ve que en_cola es true
+	add_child(instancia_siguiente)
 
 	if categoria_global != "":
 		instancia_siguiente.categoria_actual = categoria_global
@@ -112,7 +140,6 @@ func registrar_acierto():
 		if tiempo_limite_actual < 1.0:
 			tiempo_limite_actual = 1.0
 		print("¡Dificultad aumentada! Nuevo tiempo: ", tiempo_limite_actual)
-# --------------------------------------------------
 
 func dejarPasar():
 	if is_instance_valid(instancia_actual):
