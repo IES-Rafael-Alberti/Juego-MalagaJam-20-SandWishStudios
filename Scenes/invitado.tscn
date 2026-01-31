@@ -51,5 +51,8 @@ expand_mode = 1
 
 [node name="TiempoLimite" type="Timer" parent="."]
 wait_time = 5.0
+autostart = true
+
+[node name="TiempoActualizado" type="Timer" parent="."]
 
 [connection signal="timeout" from="TiempoLimite" to="." method="_on_tiempo_limite_timeout"]
