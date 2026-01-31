@@ -55,4 +55,13 @@ expand_mode = 2
 [node name="TiempoLimite" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 8.0
+offset_right = 531.0
+offset_bottom = 48.0
+value = 100.0
+fill_mode = 4
+
 [connection signal="timeout" from="TiempoLimite" to="." method="_on_tiempo_limite_timeout"]
