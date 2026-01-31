@@ -19,7 +19,7 @@ var instancia_siguiente = null
 @export var limiteDif: int = 10
 @export var reduccion_tiempo: float = 0.5 
 var aciertos_totales: int = 0
-var tiempo_limite_actual: float = 5.0 
+var tiempo_limite_actual: float = 5.0
 
 var puntuacion: int = 0:
 	set(valor):
@@ -40,6 +40,10 @@ var tiempo_aviso: float = 3.0
 
 var tex_entra_normal: Texture2D
 var tex_fuera_normal: Texture2D
+
+@onready var bgm: AudioStreamPlayer = $BGM
+
+var audio_manager : Audio
 
 func _ready() -> void:
 	randomize()
@@ -64,6 +68,10 @@ func _ready() -> void:
 	timer_cambio.start()
 	
 	_actualizar_reloj()
+	
+	audio_manager = Audio.new()
+	audio_manager.set_player(bgm)
+	audio_manager.playGameplay()
 
 func _process(delta: float) -> void:
 	actTimerCambio()
