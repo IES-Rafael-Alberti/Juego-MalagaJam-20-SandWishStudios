@@ -47,6 +47,12 @@ func _ready() -> void:
 	tex_entra_normal = btn_entra.texture_normal
 	tex_fuera_normal = btn_fuera.texture_normal
 	
+	btn_entra.mouse_entered.connect(func(): btn_entra.modulate = Color(0.8, 0.8, 0.8))
+	btn_entra.mouse_exited.connect(func(): btn_entra.modulate = Color.WHITE)
+	
+	btn_fuera.mouse_entered.connect(func(): btn_fuera.modulate = Color(0.8, 0.8, 0.8))
+	btn_fuera.mouse_exited.connect(func(): btn_fuera.modulate = Color.WHITE)
+	
 	timer_cambio.timeout.connect(cambioFiesta)
 	
 	progress_bar.max_value = timer_cambio.wait_time
@@ -107,8 +113,6 @@ func generarInvitado():
 		notes.notificar_cambio()
 		avisando_cambio = false
 	
-	# Calculamos velocidad basada en el tiempo limite actual
-	# Ejemplo: Si tiempo es 5.0, anim es 0.5s. Si es 1.0, anim es 0.1s
 	var vel_anim = clamp(tiempo_limite_actual * 0.1, 0.1, 0.5)
 
 	if instancia_siguiente != null:
@@ -116,8 +120,6 @@ func generarInvitado():
 		instancia_siguiente = null
 		
 		instancia_actual.tiempo_maximo = tiempo_limite_actual
-		
-		# IMPORTANTE: Actualizamos la velocidad del invitado que viene de la cola
 		instancia_actual.duracion_anim = vel_anim
 		
 		instancia_actual.avanzar_al_centro()
@@ -126,7 +128,6 @@ func generarInvitado():
 		instancia_actual = invitado_escena.instantiate()
 		instancia_actual.tiempo_maximo = tiempo_limite_actual
 		instancia_actual.en_cola = false 
-		# Asignamos velocidad
 		instancia_actual.duracion_anim = vel_anim
 		add_child(instancia_actual)
 
@@ -151,7 +152,6 @@ func _crear_invitado_en_cola():
 	instancia_siguiente.tiempo_maximo = tiempo_limite_actual
 	instancia_siguiente.en_cola = true
 	
-	# Asignamos velocidad también al de la cola (para su animación de entrada)
 	var vel_anim = clamp(tiempo_limite_actual * 0.1, 0.1, 0.5)
 	instancia_siguiente.duracion_anim = vel_anim
 	

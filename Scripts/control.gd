@@ -45,9 +45,31 @@ func _ready() -> void:
 	
 	esvip = randf() <= prob_vip
 	if esvip:
-		color_original = Color.GOLD
+		color_original = Color.WHITE
+		
+		var outline_shader = load("res://sharders/2doutline.gdshader")
+		
+		var vip_mat = ShaderMaterial.new()
+		vip_mat.shader = outline_shader
+		vip_mat.set_shader_parameter("color", Color(1, 0.84, 0, 1))
+		vip_mat.set_shader_parameter("width", 6.0)
+		vip_mat.set_shader_parameter("inside", true)
+		cliente.material = vip_mat
+
+		var mask_mat = ShaderMaterial.new()
+		mask_mat.shader = outline_shader
+		mask_mat.set_shader_parameter("color", Color(1, 0.84, 0, 1))
+		mask_mat.set_shader_parameter("width", 6.0)
+		mask_mat.set_shader_parameter("inside", true)
+		nodo_mascara_visual.material = mask_mat
+		
+		nodo_mascara_visual.modulate = Color(1, 0.84, 0)
+		
 	else:
 		color_original = Color.WHITE
+		cliente.material = null
+		nodo_mascara_visual.material = null
+		nodo_mascara_visual.modulate = Color.WHITE
 	
 	cliente.modulate = color_original
 		
@@ -116,6 +138,7 @@ func _process(_delta: float) -> void:
 			progress_bar_radial.tint_progress = Color.TOMATO
 	else:
 		progress_bar_radial.visible = false
+
 func _configurar_barra_radial() -> void:
 	var gradiente = Gradient.new()
 	gradiente.offsets = [0.0, 0.95, 1.0]
@@ -140,6 +163,7 @@ func _configurar_barra_radial() -> void:
 	progress_bar_radial.max_value = 100
 	
 	progress_bar_radial.custom_minimum_size = Vector2(38, 38)
+
 func avanzar_al_centro() -> void:
 	en_cola = false
 	var centro_x = get_viewport_rect().size.x / 2
