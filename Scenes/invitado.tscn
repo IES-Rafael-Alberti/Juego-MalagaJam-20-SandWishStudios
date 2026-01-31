@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bpl7w2kd24tit"]
+[gd_scene load_steps=24 format=3 uid="uid://bpl7w2kd24tit"]
 
 [ext_resource type="Script" uid="uid://c7w4mbsnmrgn3" path="res://Scripts/control.gd" id="1_oebdd"]
 [ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="2_eqnrb"]
@@ -22,8 +22,10 @@
 [ext_resource type="Resource" uid="uid://d2lsomdms5jnx" path="res://resources/japon/japon2.tres" id="19_oj1fu"]
 [ext_resource type="Resource" uid="uid://c2cc4w6uds0pf" path="res://resources/japon/japon3.tres" id="20_q6ist"]
 [ext_resource type="Resource" uid="uid://bbeni7lyld7gx" path="res://resources/japon/japon4.tres" id="21_b3cf0"]
+[ext_resource type="Texture2D" uid="uid://bipifegsk5b6h" path="res://Assets/pj/pj2.png" id="22_x20te"]
 
 [node name="Invitado" type="Control"]
+z_index = -50
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_oebdd")
@@ -31,23 +33,24 @@ mascaras_mexicanas = Array[ExtResource("2_m5c13")]([ExtResource("3_x20te"), ExtR
 mascaras_tiki = Array[ExtResource("2_m5c13")]([ExtResource("8_ktfuw"), ExtResource("9_e642p"), ExtResource("10_040fu"), ExtResource("11_qqayf"), ExtResource("12_o7750")])
 mascaras_carnaval = Array[ExtResource("2_m5c13")]([ExtResource("13_egyrs"), ExtResource("14_sgdo2"), ExtResource("15_7y78i"), ExtResource("16_sj07f"), ExtResource("17_4hrnb")])
 mascaras_japon = Array[ExtResource("2_m5c13")]([ExtResource("18_rv72e"), ExtResource("19_oj1fu"), ExtResource("20_q6ist"), ExtResource("21_b3cf0"), ExtResource("17_4hrnb")])
+prob_vip = 0.05
 
 [node name="Cliente" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 511.0
-offset_top = 231.0
-offset_right = 639.0
-offset_bottom = 359.0
-texture = ExtResource("2_eqnrb")
+offset_left = 504.0
+offset_top = 39.0
+offset_right = 674.0
+offset_bottom = 334.0
+texture = ExtResource("22_x20te")
 
 [node name="Mascaras" type="TextureRect" parent="Cliente"]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 17.0
-offset_right = 105.0
-offset_bottom = 81.0
+offset_left = 20.0
+offset_top = 4.0
+offset_right = 148.0
+offset_bottom = 132.0
 texture = ExtResource("2_eqnrb")
-expand_mode = 1
+expand_mode = 2
 
 [node name="TiempoLimite" type="Timer" parent="."]
 wait_time = 5.0

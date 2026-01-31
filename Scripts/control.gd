@@ -15,7 +15,14 @@ var esvip: bool
 var en_cola: bool = false
 var color_original: Color = Color.WHITE
 
+# Variables para recordar la posición Y original
+var orig_y_cliente: float
+var orig_y_mascaras: float
+
 var tiempo_maximo: float = 5.0 
+# --- NUEVA VARIABLE DE VELOCIDAD ---
+var duracion_anim: float = 0.5
+# -----------------------------------
 
 @export var mascaras_mexicanas : Array[MascaraData]
 @export var mascaras_tiki : Array[MascaraData]
@@ -30,6 +37,11 @@ var tiempo_maximo: float = 5.0
 
 func _ready() -> void:
 	tiempo_limite.wait_time = tiempo_maximo
+	
+	var random_idx = randi_range(1, 5)
+	var textura_pj = load("res://Assets/pj/pj%d.png" % random_idx)
+	if textura_pj:
+		cliente.texture = textura_pj
 	
 	esvip = randf() <= prob_vip
 	if esvip:
@@ -46,9 +58,11 @@ func _ready() -> void:
 		"japon": mascaras_japon
 	}
 	
+	orig_y_cliente = cliente.global_position.y
+	orig_y_mascaras = nodo_mascara_visual.global_position.y
+	
 	var centro_x = get_viewport_rect().size.x / 2
 	
-	# Posiciones iniciales
 	cliente.global_position.x = -cliente.size.x
 	nodo_mascara_visual.global_position.x = -nodo_mascara_visual.size.x
 	
@@ -56,20 +70,32 @@ func _ready() -> void:
 	var destino_final_mascaras = centro_x - (nodo_mascara_visual.size.x / 2)
 	
 	if en_cola:
-		# Lógica de espera en cola (atrás, pequeño y gris)
 		var offset_cola = 250
+		var offset_altura = 60 
+		
 		var destino_cola = destino_final - offset_cola
 		var destino_cola_mascaras = destino_final_mascaras - offset_cola
 		
+		var destino_cola_y = orig_y_cliente + offset_altura
+		var destino_cola_masc_y = orig_y_mascaras + offset_altura
+		
 		var tween = create_tween().set_parallel(true)
-		tween.tween_property(cliente, "global_position:x", destino_cola, 0.8)\
+		
+		# Usamos duracion_anim ajustada para la cola (un poco más lento que el centro)
+		var tiempo_cola = duracion_anim * 1.6
+		
+		tween.tween_property(cliente, "global_position:x", destino_cola, tiempo_cola)\
 			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		tween.tween_property(nodo_mascara_visual, "global_position:x", destino_cola_mascaras, 0.8)\
+		tween.tween_property(nodo_mascara_visual, "global_position:x", destino_cola_mascaras, tiempo_cola)\
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			
+		tween.tween_property(cliente, "global_position:y", destino_cola_y, tiempo_cola)\
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(nodo_mascara_visual, "global_position:y", destino_cola_masc_y, tiempo_cola)\
 			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		
-		# Efecto visual de cola
-		tween.tween_property(cliente, "scale", Vector2(0.8, 0.8), 0.8)
-		tween.tween_property(cliente, "modulate", Color(0.5, 0.5, 0.5, 1), 0.8)
+		tween.tween_property(cliente, "scale", Vector2(0.8, 0.8), tiempo_cola)
+		tween.tween_property(cliente, "modulate", Color(0.5, 0.5, 0.5, 1), tiempo_cola)
 		
 	else:
 		_animar_entrada_al_centro(destino_final, destino_final_mascaras)
@@ -85,14 +111,20 @@ func avanzar_al_centro() -> void:
 
 func _animar_entrada_al_centro(dest_x, dest_masc_x) -> void:
 	var tween = create_tween().set_parallel(true)
-	tween.tween_property(cliente, "global_position:x", dest_x, 0.5)\
+	
+	# Usamos la variable duracion_anim
+	tween.tween_property(cliente, "global_position:x", dest_x, duracion_anim)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_property(nodo_mascara_visual, "global_position:x", dest_masc_x, 0.5)\
+	tween.tween_property(nodo_mascara_visual, "global_position:x", dest_masc_x, duracion_anim)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		
+	tween.tween_property(cliente, "global_position:y", orig_y_cliente, duracion_anim)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(nodo_mascara_visual, "global_position:y", orig_y_mascaras, duracion_anim)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
-	# Restaurar aspecto normal
-	tween.tween_property(cliente, "scale", Vector2(1, 1), 0.5)
-	tween.tween_property(cliente, "modulate", color_original, 0.5)
+	tween.tween_property(cliente, "scale", Vector2(1, 1), duracion_anim)
+	tween.tween_property(cliente, "modulate", color_original, duracion_anim)
 	
 	tween.set_parallel(false)
 	tween.tween_callback(func(): puede_interactuar = true)
@@ -113,16 +145,12 @@ func _generar_mascara() -> void:
 	if categoria_actual == "":
 		categoria_actual = mascarasDict.keys().pick_random()
 
-	# --- MODIFICACIÓN DE PROBABILIDAD 50/50 ---
 	if randf() <= 0.5:
-		# 50% Probabilidad: Coincide (Debe ENTRAR)
 		mascara_categoria = categoria_actual
 	else:
-		# 50% Probabilidad: NO coincide (Debe ECHAR)
 		var opciones_incorrectas = mascarasDict.keys()
-		opciones_incorrectas.erase(categoria_actual) # Quitamos la correcta de la lista
-		mascara_categoria = opciones_incorrectas.pick_random() # Elegimos una incorrecta
-	# ------------------------------------------
+		opciones_incorrectas.erase(categoria_actual) 
+		mascara_categoria = opciones_incorrectas.pick_random()
 
 	var lista_mascaras: Array[MascaraData] = mascarasDict[mascara_categoria]
 	
@@ -163,9 +191,11 @@ func _on_boton_no_pressed() -> void:
 func _animar_salida(destino_x: float) -> void:
 	puede_interactuar = false
 	var tween = create_tween().set_parallel(true)
-	tween.tween_property(cliente, "global_position:x", destino_x, 0.5)\
+	
+	# Usamos la variable duracion_anim
+	tween.tween_property(cliente, "global_position:x", destino_x, duracion_anim)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	tween.tween_property(nodo_mascara_visual, "global_position:x", destino_x, 0.5)\
+	tween.tween_property(nodo_mascara_visual, "global_position:x", destino_x, duracion_anim)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
 	tween.set_parallel(false)

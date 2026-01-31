@@ -5,10 +5,8 @@ extends Node2D
 @onready var multiplicadorLabel: Label = $multiplicador
 @onready var puntuacionLabel: Label = $puntuacion
 
-# --- NUEVAS REFERENCIAS PARA EL RELOJ ---
 @onready var timer_juego: Timer = $TimerJuego
 @onready var label_reloj: Label = $reloj/tiempoRes
-# ----------------------------------------
 
 @onready var btn_entra: TextureButton = $PanelInf/Entra
 @onready var btn_fuera: TextureButton = $PanelInf/Fuera
@@ -59,13 +57,10 @@ func _ready() -> void:
 	generarInvitado()
 	timer_cambio.start()
 	
-	# Inicializamos el reloj al arrancar
 	_actualizar_reloj()
 
 func _process(delta: float) -> void:
 	actTimerCambio()
-	
-	# Actualizamos el reloj frame a frame
 	_actualizar_reloj()
 	
 	if Input.is_action_pressed("aceptar"):
@@ -84,15 +79,12 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("expulsar"):
 		dejarSalir()
 
-# --- FUNCIÓN LÓGICA DEL RELOJ ---
 func _actualizar_reloj() -> void:
 	if is_instance_valid(timer_juego) and is_instance_valid(label_reloj):
 		var tiempo_restante = timer_juego.time_left
 		var minutos = floor(tiempo_restante / 60)
 		var segundos = int(tiempo_restante) % 60
-		# Formatea el texto como MINUTOS:SEGUNDOS (ej. 1:05)
 		label_reloj.text = "%d:%02d" % [minutos, segundos]
-# --------------------------------
 
 func actTimerCambio() -> void:
 	if timeout_pausado:
@@ -114,6 +106,10 @@ func generarInvitado():
 		notes.actualizar_estado(categoria_global)
 		notes.notificar_cambio()
 		avisando_cambio = false
+	
+	# Calculamos velocidad basada en el tiempo limite actual
+	# Ejemplo: Si tiempo es 5.0, anim es 0.5s. Si es 1.0, anim es 0.1s
+	var vel_anim = clamp(tiempo_limite_actual * 0.1, 0.1, 0.5)
 
 	if instancia_siguiente != null:
 		instancia_actual = instancia_siguiente
@@ -121,20 +117,28 @@ func generarInvitado():
 		
 		instancia_actual.tiempo_maximo = tiempo_limite_actual
 		
+		# IMPORTANTE: Actualizamos la velocidad del invitado que viene de la cola
+		instancia_actual.duracion_anim = vel_anim
+		
 		instancia_actual.avanzar_al_centro()
 		
 	else:
 		instancia_actual = invitado_escena.instantiate()
 		instancia_actual.tiempo_maximo = tiempo_limite_actual
 		instancia_actual.en_cola = false 
+		# Asignamos velocidad
+		instancia_actual.duracion_anim = vel_anim
 		add_child(instancia_actual)
+
+		if categoria_global != "":
+			instancia_actual.categoria_actual = categoria_global
+		
+		instancia_actual._generar_mascara()
 
 	if categoria_global != "":
 		instancia_actual.categoria_actual = categoria_global
 
 	instancia_actual.se_ha_ido.connect(generarInvitado)
-	
-	instancia_actual._generar_mascara()
 
 	if categoria_global == "":
 		categoria_global = instancia_actual.categoria_actual
@@ -146,6 +150,10 @@ func _crear_invitado_en_cola():
 	instancia_siguiente = invitado_escena.instantiate()
 	instancia_siguiente.tiempo_maximo = tiempo_limite_actual
 	instancia_siguiente.en_cola = true
+	
+	# Asignamos velocidad también al de la cola (para su animación de entrada)
+	var vel_anim = clamp(tiempo_limite_actual * 0.1, 0.1, 0.5)
+	instancia_siguiente.duracion_anim = vel_anim
 	
 	add_child(instancia_siguiente)
 
