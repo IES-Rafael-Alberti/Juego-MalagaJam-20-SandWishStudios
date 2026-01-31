@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://k5lqehb26keb"]
+[gd_scene load_steps=5 format=3 uid="uid://k5lqehb26keb"]
 
 [ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="1_237bn"]
-[ext_resource type="Script" path="res://scripts/notes.gd" id="1_nivom"]
-[ext_resource type="Texture2D" uid="uid://cpfk3amstw6uo" path="res://Assets/tiki/tiki1.jpg" id="2_uy50o"]
-[ext_resource type="Texture2D" uid="uid://bd1necqholudf" path="res://Assets/carnaval/carnaval1.jpg" id="3_dq583"]
-[ext_resource type="Texture2D" uid="uid://yufok0yx246g" path="res://Assets/mexicana/mexicana1.jpg" id="4_dq583"]
-[ext_resource type="Texture2D" uid="uid://dbm7e6dw2y6un" path="res://Assets/japon/japon1.jpg" id="4_r6urf"]
+[ext_resource type="Script" uid="uid://d3rehpj5ds6r" path="res://scripts/notes.gd" id="1_nivom"]
+[ext_resource type="Texture2D" uid="uid://da7gwb78g02r0" path="res://Assets/ui/Pape.png" id="2_hv8xd"]
+[ext_resource type="Texture2D" uid="uid://bomfh2x112fmb" path="res://Assets/iconos/Iconos.png" id="4_kpbco"]
 
 [node name="notes" type="Control"]
 layout_mode = 3
@@ -14,161 +12,63 @@ script = ExtResource("1_nivom")
 
 [node name="Notas" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 354.0
-offset_top = 267.0
-offset_right = 653.0
-offset_bottom = 584.0
-texture = ExtResource("1_237bn")
+offset_left = 240.0
+offset_top = 206.0
+offset_right = 697.0
+offset_bottom = 660.0
+texture = ExtResource("2_hv8xd")
 expand_mode = 1
-
-[node name="Tiki" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 288.0
-offset_right = 542.0
-offset_bottom = 416.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_uy50o")
-expand_mode = 1
-
-[node name="TikiLb" type="Label" parent="Tiki"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 56.0
-offset_right = 82.0
-offset_bottom = 79.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Tiki"
-
-[node name="carnaval" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 432.0
-offset_right = 542.0
-offset_bottom = 560.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_dq583")
-expand_mode = 1
-
-[node name="carnavalLb" type="Label" parent="carnaval"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 48.0
-offset_right = 109.0
-offset_bottom = 97.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Carnaval"
-
-[node name="mexicana" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 504.0
-offset_right = 542.0
-offset_bottom = 632.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_dq583")
-expand_mode = 1
-
-[node name="mexicanaLb" type="Label" parent="mexicana"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 48.0
-offset_right = 90.0
-offset_bottom = 97.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Mexicana"
-
-[node name="Japon" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 360.0
-offset_right = 544.0
-offset_bottom = 488.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_r6urf")
-expand_mode = 1
-
-[node name="JaponLb" type="Label" parent="Japon"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 64.0
-offset_right = 104.0
-offset_bottom = 87.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Japon"
+stretch_mode = 4
 
 [node name="Estado1" type="TextureRect" parent="."]
 modulate = Color(0, 1, 0.1764706, 1)
 layout_mode = 0
-offset_left = 536.0
-offset_top = 288.0
-offset_right = 664.0
-offset_bottom = 416.0
+offset_left = 421.0
+offset_top = 380.0
+offset_right = 549.0
+offset_bottom = 508.0
+rotation = -0.44872737
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
-
-[node name="Estado1Lb" type="Label" parent="Estado1"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 56.0
-offset_right = 88.0
-offset_bottom = 79.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Bien"
 
 [node name="Estado2" type="TextureRect" parent="."]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 536.0
-offset_top = 360.0
-offset_right = 664.0
-offset_bottom = 488.0
+offset_left = 573.0
+offset_top = 310.99994
+offset_right = 701.0
+offset_bottom = 438.99994
+rotation = -0.52292496
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
-
-[node name="Estado2Lb" type="Label" parent="Estado2"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 56.0
-offset_right = 88.0
-offset_bottom = 79.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Mal"
 
 [node name="Estado3" type="TextureRect" parent="."]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 536.0
-offset_top = 432.0
-offset_right = 664.0
-offset_bottom = 560.0
+offset_left = 448.0
+offset_top = 466.99997
+offset_right = 576.0
+offset_bottom = 595.0
+rotation = -0.4782819
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
-
-[node name="Estado3Lb" type="Label" parent="Estado3"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 56.0
-offset_right = 88.0
-offset_bottom = 79.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Mal"
 
 [node name="Estado4" type="TextureRect" parent="."]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 536.0
-offset_top = 504.0
-offset_right = 664.0
-offset_bottom = 632.0
+offset_left = 609.0
+offset_top = 399.99997
+offset_right = 737.0
+offset_bottom = 528.0
+rotation = -0.5285042
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_237bn")
 
-[node name="Estado4Lb" type="Label" parent="Estado4"]
+[node name="iconos" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 56.0
-offset_right = 88.0
-offset_bottom = 79.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Mal"
+offset_left = 347.0
+offset_top = 313.0
+offset_right = 692.0
+offset_bottom = 602.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_kpbco")
