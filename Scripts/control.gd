@@ -113,16 +113,12 @@ func _generar_mascara() -> void:
 	if categoria_actual == "":
 		categoria_actual = mascarasDict.keys().pick_random()
 
-	# --- MODIFICACIÓN DE PROBABILIDAD 50/50 ---
 	if randf() <= 0.5:
-		# 50% Probabilidad: Coincide (Debe ENTRAR)
 		mascara_categoria = categoria_actual
 	else:
-		# 50% Probabilidad: NO coincide (Debe ECHAR)
 		var opciones_incorrectas = mascarasDict.keys()
-		opciones_incorrectas.erase(categoria_actual) # Quitamos la correcta de la lista
-		mascara_categoria = opciones_incorrectas.pick_random() # Elegimos una incorrecta
-	# ------------------------------------------
+		opciones_incorrectas.erase(categoria_actual)
+		mascara_categoria = opciones_incorrectas.pick_random() 
 
 	var lista_mascaras: Array[MascaraData] = mascarasDict[mascara_categoria]
 	
