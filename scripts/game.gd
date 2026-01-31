@@ -5,6 +5,11 @@ extends Node2D
 @onready var multiplicadorLabel: Label = $multiplicador
 @onready var puntuacionLabel: Label = $puntuacion
 
+# --- NUEVAS REFERENCIAS PARA EL RELOJ ---
+@onready var timer_juego: Timer = $TimerJuego
+@onready var label_reloj: Label = $reloj/tiempoRes
+# ----------------------------------------
+
 @onready var btn_entra: TextureButton = $PanelInf/Entra
 @onready var btn_fuera: TextureButton = $PanelInf/Fuera
 
@@ -53,9 +58,15 @@ func _ready() -> void:
 	
 	generarInvitado()
 	timer_cambio.start()
+	
+	# Inicializamos el reloj al arrancar
+	_actualizar_reloj()
 
 func _process(delta: float) -> void:
 	actTimerCambio()
+	
+	# Actualizamos el reloj frame a frame
+	_actualizar_reloj()
 	
 	if Input.is_action_pressed("aceptar"):
 		btn_entra.texture_normal = btn_entra.texture_pressed
@@ -72,6 +83,16 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("expulsar"):
 		dejarSalir()
+
+# --- FUNCIÓN LÓGICA DEL RELOJ ---
+func _actualizar_reloj() -> void:
+	if is_instance_valid(timer_juego) and is_instance_valid(label_reloj):
+		var tiempo_restante = timer_juego.time_left
+		var minutos = floor(tiempo_restante / 60)
+		var segundos = int(tiempo_restante) % 60
+		# Formatea el texto como MINUTOS:SEGUNDOS (ej. 1:05)
+		label_reloj.text = "%d:%02d" % [minutos, segundos]
+# --------------------------------
 
 func actTimerCambio() -> void:
 	if timeout_pausado:

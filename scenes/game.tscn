@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://daddobmomnce1"]
+[gd_scene load_steps=14 format=3 uid="uid://daddobmomnce1"]
 
 [ext_resource type="Script" uid="uid://b5ugfnb8bwnqs" path="res://Scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://drsnw21y7edn7" path="res://Assets/ui/PP.png" id="2_3dryh"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://sjuph4amw7he" path="res://Assets/iconos/X.png" id="5_ldgsr"]
 [ext_resource type="Texture2D" uid="uid://doatdjo2wws5" path="res://Assets/botones/GreenDown.png" id="6_v158k"]
 [ext_resource type="Texture2D" uid="uid://cojgo5gdc01ji" path="res://Assets/iconos/Tico.png" id="8_o5yvi"]
+[ext_resource type="Texture2D" uid="uid://cd5d52kik0qgf" path="res://Assets/ui/Reloj.png" id="11_rku1e"]
+[ext_resource type="FontFile" uid="uid://c14go63co8yb2" path="res://Assets/fonts/DS-DIGI.TTF" id="12_rfjv2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rku1e"]
 
@@ -119,6 +121,23 @@ offset_top = -112.0
 offset_right = 911.0
 offset_bottom = 295.0
 texture = ExtResource("4_wowpa")
+
+[node name="reloj" type="TextureRect" parent="."]
+offset_left = 41.0
+offset_top = -96.0
+offset_right = 246.0
+offset_bottom = 3.0
+texture = ExtResource("11_rku1e")
+
+[node name="tiempoRes" type="Label" parent="reloj"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 25.0
+offset_right = 143.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("12_rfjv2")
+theme_override_font_sizes/font_size = 47
+text = "1:40"
 
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
