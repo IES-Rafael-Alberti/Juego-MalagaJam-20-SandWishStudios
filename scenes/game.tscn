@@ -18,7 +18,10 @@ offset_bottom = 773.0
 texture = ExtResource("1_uwrxv")
 
 [node name="Fuera" type="TextureButton" parent="PanelInf"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12424608
+anchor_right = 0.12424608
 offset_left = 81.0
 offset_top = 81.0
 offset_right = 209.0
@@ -28,10 +31,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Entra" type="TextureButton" parent="PanelInf"]
 layout_mode = 0
-offset_left = 627.0
-offset_top = 86.0
-offset_right = 755.0
-offset_bottom = 214.0
+offset_left = 400.0
+offset_top = 81.0
+offset_right = 528.0
+offset_bottom = 209.0
 texture_normal = ExtResource("1_uwrxv")
 
 [node name="PanelDer" type="TextureRect" parent="."]
@@ -49,23 +52,43 @@ offset_bottom = 769.0
 texture = ExtResource("1_uwrxv")
 
 [node name="notes" parent="." instance=ExtResource("3_wrm1d")]
-offset_left = 64.0
-offset_top = 226.0
-offset_right = 64.0
-offset_bottom = 226.0
+offset_left = 488.0
+offset_top = 192.0
+offset_right = 488.0
+offset_bottom = 192.0
 
 [node name="TimerCambio" type="Timer" parent="."]
 wait_time = 15.0
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 452.0
-offset_top = 601.0
-offset_right = 694.0
-offset_bottom = 628.0
+offset_left = 408.0
+offset_top = 508.0
+offset_right = 650.0
+offset_bottom = 535.0
 step = 1.0
 value = 100.0
 show_percentage = false
 
+[node name="TimerJuego" type="Timer" parent="."]
+wait_time = 100.0
+autostart = true
+
+[node name="puntuacion" type="Label" parent="."]
+offset_left = 991.0
+offset_top = -48.0
+offset_right = 1055.0
+offset_bottom = -9.0
+theme_override_font_sizes/font_size = 28
+
+[node name="multiplicador" type="Label" parent="."]
+offset_left = 1074.0
+offset_top = -47.0
+offset_right = 1120.0
+offset_bottom = -8.0
+theme_override_font_sizes/font_size = 28
+text = "x 1"
+
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
 [connection signal="timeout" from="TimerCambio" to="." method="cambioFiesta"]
+[connection signal="timeout" from="TimerJuego" to="." method="finJuego"]

@@ -48,3 +48,8 @@ offset_right = 105.0
 offset_bottom = 81.0
 texture = ExtResource("2_eqnrb")
 expand_mode = 1
+
+[node name="TiempoLimite" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="TiempoLimite" to="." method="_on_tiempo_limite_timeout"]

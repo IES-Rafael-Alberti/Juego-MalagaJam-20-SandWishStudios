@@ -8,13 +8,25 @@ signal se_ha_ido
 var puede_interactuar: bool = false
 var mascarasDict: Dictionary = {}
 var categoria_actual: String = ""
+var mascara_categoria: String = ""
+var esvip: bool
 
 @export var mascaras_mexicanas : Array[MascaraData]
 @export var mascaras_tiki : Array[MascaraData]
 @export var mascaras_carnaval : Array[MascaraData]
 @export var mascaras_japon : Array[MascaraData]
+@export var aumento: int = 100
+@export var reduccion: int = -50
+@export var ausencia: int = -25
+@export var prob_vip: float = 1
+@export var inc_vip: float = 0.2
+@onready var tiempo_limite: Timer = $TiempoLimite
 
 func _ready() -> void:
+	esvip = randf() <= prob_vip
+	if esvip:
+		cliente.modulate = Color.GOLD
+		
 	mascarasDict = {
 		"mexicanas": mascaras_mexicanas,
 		"tiki": mascaras_tiki,
@@ -37,6 +49,8 @@ func _ready() -> void:
 	
 	tween.set_parallel(false)
 	tween.tween_callback(func(): puede_interactuar = true)
+	
+	tiempo_limite.start()
 
 func obtener_otra_categoria(actual: String) -> String:
 	var categorias = mascarasDict.keys()
@@ -53,20 +67,42 @@ func _generar_mascara() -> void:
 	if categoria_actual == "":
 		categoria_actual = mascarasDict.keys().pick_random()
 
-	var lista_mascaras: Array[MascaraData] = mascarasDict[categoria_actual]
+	mascara_categoria = mascarasDict.keys().pick_random()
+
+	var lista_mascaras: Array[MascaraData] = mascarasDict[mascara_categoria]
 	
 	if lista_mascaras.size() > 0:
 		var rng = randi_range(0, lista_mascaras.size() - 1)
 		nodo_mascara_visual.texture = lista_mascaras[rng].icon
 	else:
-		push_warning("Lista vacía para: " + categoria_actual)
+		push_warning("Lista vacía para: " + mascara_categoria)
 
 func _on_boton_si_pressed() -> void:
 	if not puede_interactuar: return
+	
+	if mascara_categoria == categoria_actual:
+		print("BIEN ")
+		aumentar_puntuacion()
+		
+		if esvip:
+			get_parent().multiplicador += inc_vip
+	else:
+		print(" MAL ")
+		reducir_puntuacion(1)
+	
 	_animar_salida(get_viewport_rect().size.x + 100)
 
 func _on_boton_no_pressed() -> void:
 	if not puede_interactuar: return
+
+	if mascara_categoria != categoria_actual:
+		print("BIEN ")
+		aumentar_puntuacion()
+		
+	else:
+		print("MAL")
+		reducir_puntuacion(1)
+
 	_animar_salida(-cliente.size.x - 100)
 
 func _animar_salida(destino_x: float) -> void:
@@ -82,3 +118,19 @@ func _animar_salida(destino_x: float) -> void:
 		se_ha_ido.emit()
 		queue_free()
 	)
+
+func _on_tiempo_limite_timeout() -> void:
+	print("Se acabó el tiempo")
+	reducir_puntuacion(2)
+	_animar_salida(-cliente.size.x - 100) 
+	
+func aumentar_puntuacion():
+	get_parent().puntuacion += aumento
+	print(aumento)
+	
+func reducir_puntuacion(valor: int):
+	if valor == 1:
+		get_parent().puntuacion += reduccion
+	else:
+		get_parent().puntuacion += ausencia
+	print(reduccion)
