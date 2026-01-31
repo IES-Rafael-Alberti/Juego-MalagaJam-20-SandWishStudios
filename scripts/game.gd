@@ -2,15 +2,26 @@ extends Node2D
 
 @onready var invitado_escena = preload("res://Scenes/invitado.tscn")
 @onready var notes = $notes
+@onready var multiplicadorLabel: Label = $multiplicador
+@onready var puntuacionLabel: Label = $puntuacion
 
 var instancia_actual = null
 @onready var timer_cambio: Timer = $TimerCambio
 @onready var progress_bar: ProgressBar = $ProgressBar
 
+var puntuacion: int = 0:
+	set(valor):
+		puntuacion = valor
+		_actualizar_ui()
+
+var multiplicador: float = 1.0:
+	set(valor):
+		multiplicador = valor
+		_actualizar_ui()
+
 var categoria_global: String = ""
 var categoria_pendiente: String= ""
 var timeout_pausado := false
-
 
 func _ready() -> void:
 	randomize()
@@ -20,8 +31,10 @@ func _ready() -> void:
 	progress_bar.max_value = timer_cambio.wait_time
 	progress_bar.value = timer_cambio.wait_time
 	
+	_actualizar_ui()
+	
 	generarInvitado()
-	timer_cambio.start() 
+	timer_cambio.start()
 
 func _process(delta: float) -> void:
 	actTimerCambio()
@@ -77,6 +90,13 @@ func _rearmar_timer_si_timeout() -> void:
 		timeout_pausado = false
 		progress_bar.value = timer_cambio.wait_time
 		timer_cambio.start()
-		
+
+func _actualizar_ui() -> void:
+	if puntuacionLabel:
+		puntuacionLabel.text = str(puntuacion)
+			
+	if multiplicadorLabel:
+		multiplicadorLabel.text = "x %.1f" % multiplicador
+
 func finJuego():
 	get_tree().quit()
