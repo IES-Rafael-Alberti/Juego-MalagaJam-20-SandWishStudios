@@ -79,4 +79,4 @@ func _rearmar_timer_si_timeout() -> void:
 		timer_cambio.start()
 		
 func finJuego():
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://scenes/fin_juego.tscn")
