@@ -121,8 +121,6 @@ func _actualizar_ui() -> void:
 func finJuego():
 	timer_cambio.stop()
 	set_process(false)
-	_puntuacion = 234
-	_multiplicador = 5.0
 
 	call_deferred("_cambiar_a_fin_juego")
 
