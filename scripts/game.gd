@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var invitado_escena = preload("res://Scenes/invitado.tscn")
 @onready var notes = $notes
-
+@onready var multiplicadorLabel: Label = $multiplicador
 @onready var puntuacionLabel: Label = $puntuacion
 
 var instancia_actual = null
@@ -12,6 +12,11 @@ var instancia_actual = null
 var puntuacion: int = 0:
 	set(valor):
 		puntuacion = valor
+		_actualizar_ui()
+
+var multiplicador: float = 1.0:
+	set(valor):
+		multiplicador = valor
 		_actualizar_ui()
 
 var categoria_global: String = ""
@@ -62,7 +67,6 @@ func generarInvitado():
 func dejarPasar():
 	if is_instance_valid(instancia_actual):
 		_rearmar_timer_si_timeout()
-
 		instancia_actual._on_boton_si_pressed()
 
 func dejarSalir():
@@ -89,11 +93,10 @@ func _rearmar_timer_si_timeout() -> void:
 
 func _actualizar_ui() -> void:
 	if puntuacionLabel:
-		if "text" in puntuacionLabel:
-			puntuacionLabel.text = str(puntuacion)
-		
-		elif puntuacionLabel.has_node("Label"):
-			puntuacionLabel.get_node("Label").text = str(puntuacion)
+		puntuacionLabel.text = str(puntuacion)
+			
+	if multiplicadorLabel:
+		multiplicadorLabel.text = "x %.1f" % multiplicador
 
 func finJuego():
 	get_tree().quit()
