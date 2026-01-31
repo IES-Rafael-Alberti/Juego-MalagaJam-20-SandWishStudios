@@ -6,6 +6,9 @@ extends Node2D
 @onready var puntuacionLabel: Label = $puntuacion
 
 var instancia_actual = null
+# Nueva variable para guardar al que espera
+var instancia_siguiente = null 
+
 @onready var timer_cambio: Timer = $TimerCambio
 @onready var progress_bar: ProgressBar = $ProgressBar
 @export var limiteDif: int = 10
@@ -50,26 +53,57 @@ func actTimerCambio() -> void:
 		progress_bar.value = timer_cambio.time_left
 
 func generarInvitado():
+	# Manejo del cambio de fiesta
 	if categoria_pendiente != "":
 		categoria_global = categoria_pendiente
 		categoria_pendiente = ""
 		notes.actualizar_estado(categoria_global)
 
-	instancia_actual = invitado_escena.instantiate()
-	
-	instancia_actual.tiempo_maximo = tiempo_limite_actual
-	
-	add_child(instancia_actual)
+	# --- 1. PROMOCIÓN DEL INVITADO EN ESPERA A ACTUAL ---
+	if instancia_siguiente != null:
+		instancia_actual = instancia_siguiente
+		instancia_siguiente = null
+		
+		# Actualizamos su tiempo límite con la dificultad actual
+		instancia_actual.tiempo_maximo = tiempo_limite_actual
+		
+		# Le ordenamos entrar al centro y activarse
+		instancia_actual.avanzar_al_centro()
+		
+	else:
+		# Caso inicial: No hay nadie en cola, creamos el primero directo
+		instancia_actual = invitado_escena.instantiate()
+		instancia_actual.tiempo_maximo = tiempo_limite_actual
+		instancia_actual.en_cola = false 
+		add_child(instancia_actual)
 
+	# Configuración común del invitado actual
 	if categoria_global != "":
 		instancia_actual.categoria_actual = categoria_global
 
 	instancia_actual.se_ha_ido.connect(generarInvitado)
+	
+	# Regeneramos máscara por si la categoría cambió mientras estaba en cola
 	instancia_actual._generar_mascara()
 
 	if categoria_global == "":
 		categoria_global = instancia_actual.categoria_actual
 		notes.actualizar_estado(categoria_global)
+		
+	# --- 2. GENERAR EL NUEVO INVITADO DE LA COLA ---
+	_crear_invitado_en_cola()
+
+func _crear_invitado_en_cola():
+	instancia_siguiente = invitado_escena.instantiate()
+	instancia_siguiente.tiempo_maximo = tiempo_limite_actual
+	instancia_siguiente.en_cola = true # Importante: Marcamos que va a la cola
+	
+	add_child(instancia_siguiente) # Al añadirlo, control.gd ejecuta su _ready y ve que en_cola es true
+
+	if categoria_global != "":
+		instancia_siguiente.categoria_actual = categoria_global
+
+	instancia_siguiente._generar_mascara()
 
 func registrar_acierto():
 	aciertos_totales += 1
