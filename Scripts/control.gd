@@ -8,6 +8,7 @@ signal se_ha_ido
 var puede_interactuar: bool = false
 var mascarasDict: Dictionary = {}
 var categoria_actual: String = ""
+var mascara_categoria: String = ""
 
 @export var mascaras_mexicanas : Array[MascaraData]
 @export var mascaras_tiki : Array[MascaraData]
@@ -59,20 +60,34 @@ func _generar_mascara() -> void:
 	if categoria_actual == "":
 		categoria_actual = mascarasDict.keys().pick_random()
 
-	var lista_mascaras: Array[MascaraData] = mascarasDict[categoria_actual]
+	mascara_categoria = mascarasDict.keys().pick_random()
+
+	var lista_mascaras: Array[MascaraData] = mascarasDict[mascara_categoria]
 	
 	if lista_mascaras.size() > 0:
 		var rng = randi_range(0, lista_mascaras.size() - 1)
 		nodo_mascara_visual.texture = lista_mascaras[rng].icon
 	else:
-		push_warning("Lista vacía para: " + categoria_actual)
+		push_warning("Lista vacía para: " + mascara_categoria)
 
 func _on_boton_si_pressed() -> void:
 	if not puede_interactuar: return
+	
+	if mascara_categoria == categoria_actual:
+		print("BIEN ")
+	else:
+		print(" MAL ")
+	
 	_animar_salida(get_viewport_rect().size.x + 100)
 
 func _on_boton_no_pressed() -> void:
 	if not puede_interactuar: return
+
+	if mascara_categoria != categoria_actual:
+		print("BIEN ")
+	else:
+		print("MAL")
+
 	_animar_salida(-cliente.size.x - 100)
 
 func _animar_salida(destino_x: float) -> void:
