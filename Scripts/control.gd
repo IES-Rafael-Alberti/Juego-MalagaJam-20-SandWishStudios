@@ -215,6 +215,7 @@ func _generar_mascara() -> void:
 		opciones_incorrectas.erase(categoria_actual) 
 		mascara_categoria = opciones_incorrectas.pick_random()
 
+
 	var lista_mascaras: Array[MascaraData] = mascarasDict[mascara_categoria]
 	
 	if lista_mascaras.size() > 0:
