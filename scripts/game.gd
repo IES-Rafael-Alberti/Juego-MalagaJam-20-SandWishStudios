@@ -8,9 +8,12 @@ var instancia_actual = null
 @onready var progress_bar: ProgressBar = $ProgressBar
 
 var categoria_global: String = ""
+var categoria_pendiente: String= ""
 
 func _ready() -> void:
 	randomize()
+	
+	timer_cambio.timeout.connect(cambioFiesta)
 	
 	progress_bar.max_value = timer_cambio.wait_time
 	progress_bar.value = timer_cambio.wait_time
@@ -25,19 +28,23 @@ func actTimerCambio() -> void:
 	progress_bar.value = timer_cambio.time_left
 
 func generarInvitado():
+	if categoria_pendiente != "":
+		categoria_global = categoria_pendiente
+		categoria_pendiente = ""
+		notes.actualizar_estado(categoria_global)
+
 	instancia_actual = invitado_escena.instantiate()
 	add_child(instancia_actual)
-	
+
 	if categoria_global != "":
 		instancia_actual.categoria_actual = categoria_global
-	
+
 	instancia_actual.se_ha_ido.connect(generarInvitado)
 	instancia_actual._generar_mascara()
-	
+
 	if categoria_global == "":
 		categoria_global = instancia_actual.categoria_actual
 		notes.actualizar_estado(categoria_global)
-
 
 func dejarPasar():
 	if is_instance_valid(instancia_actual):
@@ -49,10 +56,7 @@ func dejarSalir():
 		
 func cambioFiesta():
 	if is_instance_valid(instancia_actual):
-		var nueva_cat = instancia_actual.obtener_otra_categoria(categoria_global)
-		categoria_global = nueva_cat
-		print("¡Cambio de fiesta! Siguiente invitado será: ", categoria_global)
+		categoria_pendiente = instancia_actual.obtener_otra_categoria(categoria_global)
+		print("¡Cambio de fiesta pendiente! Siguiente invitado será: ", categoria_pendiente)
 
-		notes.actualizar_estado(categoria_global)
-		
-		timer_cambio.start()
+	timer_cambio.start()
