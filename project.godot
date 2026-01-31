@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 Talo="*res://addons/talo/talo_manager.gd"
+Global="*res://scripts/global.gd"
 
 [display]
 

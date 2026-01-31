@@ -71,15 +71,27 @@ func _load_entries() -> void:
 	_build_entries()
 
 func _on_submit_pressed() -> void:
-	await Talo.players.identify("username", username.text)
-	var score := RandomNumberGenerator.new().randi_range(0, 100)
-	var team := "Blue" if RandomNumberGenerator.new().randi_range(0, 1) == 0 else "Red"
+	var name := username.text.strip_edges()
+	if name.is_empty():
+		info_label.text = "Please enter a username."
+		return
 
-	var res := await Talo.leaderboards.add_entry(leaderboard_internal_name, score, {team = team})
+	if Global.last_score <= 0:
+		info_label.text = "No score to submit."
+		return
+
+	await Talo.players.identify("username", name)
+
+	var score := Global.last_score
+	var res := await Talo.leaderboards.add_entry(leaderboard_internal_name, score, {})
 	assert(is_instance_valid(res))
-	info_label.text = "You scored %s points for the %s team!%s" % [score, team, " Your highscore was updated!" if res.updated else ""]
 
-	_build_entries()
+	info_label.text = "You scored %s points!%s" % [score, " Your highscore was updated!" if res.updated else ""]
+
+	await _load_entries()
+	_set_entry_count()
+
+	Global.last_score = 0
 
 func _get_next_filter(idx: int) -> String:
 	return ["All", "Blue", "Red"][idx % 3]
@@ -92,3 +104,11 @@ func _on_filter_pressed() -> void:
 	filter_button.text = "%s team scores" % _get_next_filter(_filter_idx + 1)
 
 	_build_entries()
+
+
+func _on_rety_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_exit_pressed() -> void:
+	pass # Replace with function body.

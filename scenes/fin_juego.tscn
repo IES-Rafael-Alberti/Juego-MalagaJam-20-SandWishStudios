@@ -58,5 +58,14 @@ theme_override_colors/font_color = Color(1, 0.76862746, 0, 1)
 theme_override_fonts/font = ExtResource("3_fhiyh")
 theme_override_font_sizes/font_size = 90
 
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 640.0
+offset_right = 640.0
+offset_bottom = 768.0
+texture_normal = ExtResource("1_bm51o")
+
 [connection signal="pressed" from="TextureRect/Reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="TextureRect/Salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
