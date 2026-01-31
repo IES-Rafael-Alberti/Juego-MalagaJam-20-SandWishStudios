@@ -64,7 +64,7 @@ value = 100.0
 show_percentage = false
 
 [node name="TimerJuego" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 100.0
 autostart = true
 
 [node name="puntuacion" type="Label" parent="."]
