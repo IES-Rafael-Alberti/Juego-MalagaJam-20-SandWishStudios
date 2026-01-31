@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b80x548xioafl"]
+[gd_scene load_steps=4 format=3 uid="uid://b80x548xioafl"]
 
 [ext_resource type="Script" uid="uid://dpn0651va5x1n" path="res://scripts/fin_juego.gd" id="1_0aqx1"]
 [ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="1_bm51o"]
-[ext_resource type="Texture2D" uid="uid://cvi5tvu7djba3" path="res://Assets/tiki/tiki5.jpg" id="2_6f5s4"]
 [ext_resource type="FontFile" uid="uid://dwgb56ietqfed" path="res://Assets/fonts/Urbana-®.ttf" id="3_fhiyh"]
 
 [node name="FinJuego" type="Control"]
@@ -21,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_6f5s4")
+texture = ExtResource("1_bm51o")
 
 [node name="Reiniciar" type="TextureButton" parent="TextureRect"]
 modulate = Color(0, 1, 0, 1)
@@ -58,5 +57,22 @@ theme_override_colors/font_color = Color(1, 0.76862746, 0, 1)
 theme_override_fonts/font = ExtResource("3_fhiyh")
 theme_override_font_sizes/font_size = 90
 
+[node name="Entrar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 680.0
+offset_right = 544.0
+offset_bottom = 711.0
+text = "Sumbit"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 680.0
+offset_right = 720.0
+offset_bottom = 712.0
+placeholder_text = "Enter Name:"
+
 [connection signal="pressed" from="TextureRect/Reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="TextureRect/Salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="Entrar" to="." method="_on_entrar_pressed"]

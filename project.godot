@@ -15,9 +15,18 @@ run/main_scene="uid://daddobmomnce1"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+Global="*res://scripts/global.gd"
+
 [display]
 
 window/size/viewport_height=864
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
 
 [rendering]
 

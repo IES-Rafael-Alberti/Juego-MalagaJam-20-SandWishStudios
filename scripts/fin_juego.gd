@@ -6,6 +6,7 @@ extends Control
 
 var puntosBase: int = 0
 var multiplicador: float = 1.0
+var score : int = 0
 
 func _ready() -> void:
 	puntuacionLb.text = "Puntos: %d  x%.1f\nTotal: %d" % [puntosBase, multiplicador, puntosBase]
@@ -13,6 +14,7 @@ func _ready() -> void:
 	await get_tree().create_timer(1.0).timeout
 
 	var total_objetivo := int(round(puntosBase * multiplicador))
+	score = total_objetivo
 	await animacion_puntuacion(puntosBase, total_objetivo, 1.0)
 
 func _on_reiniciar_pressed() -> void:
@@ -42,3 +44,12 @@ func animacion_puntuacion(desde: int, hasta: int, duracion: float) -> void:
 
 	puntuacionLb.add_theme_font_size_override("font_size", 90)
 	puntuacionLb.text = "Puntos: %d  x%.1f\nTotal: %d" % [puntosBase, multiplicador, hasta]
+
+func _on_entrar_pressed() -> void:
+	var player_name : String = $LineEdit.text.strip_edges()
+	if player_name != "":
+		print("CONFIG:", SilentWolf.config)
+		print("SCORES CONFIG:", SilentWolf.Scores.ldboard_config)
+		print("LEADERBOARDS CACHE:", SilentWolf.Scores.leaderboards)
+		SilentWolf.Scores.save_score(player_name, score)
+		get_tree().change_scene_to_file("res://addons/silent_wolf/Scores/Leaderboard.tscn")

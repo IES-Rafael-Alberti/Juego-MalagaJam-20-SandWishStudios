@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=3 uid="uid://bpl7w2kd24tit"]
 
-[ext_resource type="Script" uid="uid://c7w4mbsnmrgn3" path="res://Scripts/control.gd" id="1_oebdd"]
+[ext_resource type="Script" uid="uid://c7w4mbsnmrgn3" path="res://scripts/control.gd" id="1_oebdd"]
 [ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="2_eqnrb"]
-[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://Scripts/MascaraData.gd" id="2_m5c13"]
+[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://scripts/MascaraData.gd" id="2_m5c13"]
 [ext_resource type="Resource" uid="uid://l7b0s4xkqluo" path="res://resources/Mexicana/mexicana1.tres" id="3_x20te"]
 [ext_resource type="Resource" uid="uid://cp50genednw8f" path="res://resources/Mexicana/mexicana2.tres" id="4_1k44g"]
 [ext_resource type="Resource" uid="uid://b0tyiwwmjdekd" path="res://resources/Mexicana/mexicana3.tres" id="5_nui76"]
