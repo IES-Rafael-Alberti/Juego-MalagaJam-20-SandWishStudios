@@ -8,6 +8,10 @@ extends Node2D
 var instancia_actual = null
 @onready var timer_cambio: Timer = $TimerCambio
 @onready var progress_bar: ProgressBar = $ProgressBar
+@export var limiteDif: int = 10
+@export var reduccion_tiempo: float = 0.5 
+var aciertos_totales: int = 0
+var tiempo_limite_actual: float = 5.0 
 
 var puntuacion: int = 0:
 	set(valor):
@@ -52,6 +56,9 @@ func generarInvitado():
 		notes.actualizar_estado(categoria_global)
 
 	instancia_actual = invitado_escena.instantiate()
+	
+	instancia_actual.tiempo_maximo = tiempo_limite_actual
+	
 	add_child(instancia_actual)
 
 	if categoria_global != "":
@@ -63,6 +70,15 @@ func generarInvitado():
 	if categoria_global == "":
 		categoria_global = instancia_actual.categoria_actual
 		notes.actualizar_estado(categoria_global)
+
+func registrar_acierto():
+	aciertos_totales += 1
+	if aciertos_totales > 0 and aciertos_totales % limiteDif == 0:
+		tiempo_limite_actual -= reduccion_tiempo
+		if tiempo_limite_actual < 1.0:
+			tiempo_limite_actual = 1.0
+		print("¡Dificultad aumentada! Nuevo tiempo: ", tiempo_limite_actual)
+# --------------------------------------------------
 
 func dejarPasar():
 	if is_instance_valid(instancia_actual):
@@ -100,4 +116,3 @@ func _actualizar_ui() -> void:
 
 func finJuego():
 	get_tree().change_scene_to_file("res://scenes/fin_juego.tscn")
-
