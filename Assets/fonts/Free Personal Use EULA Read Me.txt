@@ -1,0 +1,58 @@
+B85 FONTS 
+
+Free Personal Use License
+- Users: 1 user.
+- For personal use only.
+- Personal and academic non-commercial documents or projects.
+- Ideal for test use with the acquired typeface and simple personal use.
+- Use in social networks for non-commercial activities.
+
+Limitations:
+- Prohibited for use in commercial projects of any kind.
+- Prohibited its use for logos, isotypes, brand slogans or any branding element.
+- Embedding in websites, applications or software is not allowed.
+- Maximum of 300 impressions, no digital downloads.
+- This license is granted free of charge and does not include technical support or future upgrades.
+- Does not include access to advanced features such as OpenType, stylistic alternates or additional glyphs, as appropriate..
+- Modification, redistribution or resale of the source is strictly prohibited.
+
+
+
+End-User License Agreement (EULA) - B85 Fonts
+
+1. General
+This End-User License Agreement (EULA) is a legal agreement between you (the "User") and B85 Fonts (the "Company") regarding the use of the fonts created, owned, and distributed by B85 Fonts. By purchasing, downloading, or using any font from B85 Fonts, you agree to the terms of this agreement. If you do not agree with these terms, do not use the fonts.
+This agreement applies to all font licenses provided by B85 Fonts, including the Basic Desktop License, Pro Commercial License, Comprehensive Extended License, and Free Personal Use License, unless otherwise specified.
+
+2. Intellectual Property
+All fonts created and distributed by B85 Fonts are the exclusive intellectual property of B85 Fonts. These fonts are licensed, not sold. Ownership of the fonts and all associated intellectual property rights remain with B85 Fonts. Copying, redistribution, or unauthorized modification of the fonts is strictly prohibited.
+
+3. Permissions and Restrictions
+
+3.1 Permitted Uses
+Fonts may be used in accordance with the specific terms of the purchased license (e.g., Basic Desktop License, Pro Commercial License, or Comprehensive Extended License).
+Users may create designs, graphics, and printed materials for personal or commercial projects as permitted by their license.
+Embedding or integrating fonts into digital platforms (e.g., websites, applications) is allowed only if explicitly permitted by the license.
+
+3.2 Prohibited Uses
+Redistribution, sublicensing, resale, or sharing of the fonts in any form is not allowed.
+Fonts may not be used to create derivative font files, such as converting the font to another format or creating modified versions of the font.
+Fonts may not be used for projects that exceed the limits defined in the specific license (e.g., print volume, commercial sales, monthly website views).
+Fonts may not be used for illegal, defamatory, or harmful purposes.
+
+3.3 Available License Types
+Basic Desktop License: For limited personal and commercial use in static designs and printed materials.
+Pro Commercial License: For video, film, and broadcast media projects.
+Comprehensive Extended License: For unlimited personal and commercial use across various platforms, including embedding in digital tools.
+Free Personal Use License: For strictly personal, trial and non-commercial use only.
+
+4. Limited Warranty and Liability
+B85 Fonts guarantees that all fonts are free of viruses, malware, and defects that could harm the User’s system or data. If a defective file is found, B85 Fonts will replace it at no additional cost to the User.
+B85 Fonts is not responsible for indirect, incidental, or consequential damages arising from the use or inability to use the fonts. The User assumes full responsibility for the outcomes resulting from the use of the fonts.
+
+5. Indemnification
+The User agrees to indemnify, defend, and hold harmless B85 Fonts, its affiliates, and representatives from any claims, damages, or liabilities arising from the misuse of the fonts or violation of the terms of this agreement.
+The User is solely responsible for ensuring compliance with applicable laws and regulations when using B85 Fonts products. Any breach of this agreement that results in harm to B85 Fonts will be pursued to the fullest extent of the law.
+
+By acquiring or using fonts from B85 Fonts, you acknowledge that you have read, understood, and agree to the terms outlined in this EULA.
+

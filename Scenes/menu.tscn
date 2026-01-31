@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://75xyc1xwbcy4"]
+
+[ext_resource type="Script" uid="uid://jyo6svf60vq6" path="res://Scripts/menu.gd" id="1_1rerr"]
+[ext_resource type="Texture2D" uid="uid://ctwee01kd60m4" path="res://Assets/ui/Play.png" id="2_wwsa2"]
+[ext_resource type="Texture2D" uid="uid://comkpar5vbyqo" path="res://Assets/ui/Menú.png" id="2_xhh6f"]
+[ext_resource type="Texture2D" uid="uid://cirk165vwns0j" path="res://Assets/ui/Settings.png" id="3_jsrd8"]
+[ext_resource type="FontFile" uid="uid://b0l6clpjwwmvw" path="res://Assets/fonts/UrbanRiotDEMO-B85.ttf" id="3_wbdvm"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1rerr")
+
+[node name="LabelLeaderBoard" type="Label" parent="."]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 424.0
+offset_right = 1023.0
+offset_bottom = 559.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_wbdvm")
+theme_override_font_sizes/font_size = 64
+text = "LeaderBoard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotonPlay" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 456.0
+offset_right = 456.0
+offset_bottom = 589.0
+texture_normal = ExtResource("2_wwsa2")
+
+[node name="LabelPlay" type="Label" parent="."]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 488.0
+offset_right = 376.0
+offset_bottom = 560.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_wbdvm")
+theme_override_font_sizes/font_size = 64
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotonSettings" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 600.0
+offset_right = 475.0
+offset_bottom = 753.0
+texture_normal = ExtResource("3_jsrd8")
+
+[node name="LabelSettings" type="Label" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 640.0
+offset_right = 420.0
+offset_bottom = 712.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_wbdvm")
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(576, 432)
+texture = ExtResource("2_xhh6f")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+
+[connection signal="mouse_entered" from="BotonPlay" to="." method="_on_boton_play_mouse_entered"]
+[connection signal="mouse_exited" from="BotonPlay" to="." method="_on_boton_play_mouse_exited"]
+[connection signal="pressed" from="BotonPlay" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="BotonSettings" to="." method="_on_boton_settings_mouse_entered"]
+[connection signal="mouse_exited" from="BotonSettings" to="." method="_on_boton_settings_mouse_exited"]
+[connection signal="pressed" from="BotonSettings" to="." method="_on_boton_settings_pressed"]
