@@ -15,12 +15,7 @@ var mascara_categoria: String = ""
 @export var mascaras_carnaval : Array[MascaraData]
 @export var mascaras_japon : Array[MascaraData]
 
-@onready var tiempo_limite: Timer = $TiempoLimite
-@onready var tiempo_actualizado: Timer = $TiempoActualizado
-
 var num_aciertos = 0
-
-var tiempo_ha_cambiado : bool
 
 func _ready() -> void:
 	mascarasDict = {
@@ -46,11 +41,9 @@ func _ready() -> void:
 	tween.set_parallel(false)
 	tween.tween_callback(func(): puede_interactuar = true)
 	
-	tiempo_limite.start()
+	get_parent().tiempo_limite.wait_time = get_parent().calcular_tiempo_limite()
 	
-	tiempo_limite.wait_time = calcular_tiempo_limite()
-	
-	print("Tiempo ready:", tiempo_limite.wait_time)
+	print("Tiempo ready:", get_parent().tiempo_limite.wait_time)
 
 func obtener_otra_categoria(actual: String) -> String:
 	var categorias = mascarasDict.keys()
@@ -82,30 +75,30 @@ func _on_boton_si_pressed() -> void:
 	
 	if mascara_categoria == categoria_actual:
 		print("BIEN ")
-		num_aciertos = 10
+		#num_aciertos = 10
 		num_aciertos += 0
 		if num_aciertos >= 10:
 			reducir_tiempo()
 	else:
 		print(" MAL ")
 	
-	_animar_salida(get_viewport_rect().size.x + 100)
+	animar_salida(get_viewport_rect().size.x + 100)
 
 func _on_boton_no_pressed() -> void:
 	if not puede_interactuar: return
 
 	if mascara_categoria != categoria_actual:
 		print("BIEN ")
-		num_aciertos = 10
+		#num_aciertos = 10
 		num_aciertos += 0
 		if num_aciertos >= 10:
 			reducir_tiempo()
 	else:
 		print("MAL")
 
-	_animar_salida(-cliente.size.x - 100)
+	animar_salida(-cliente.size.x - 100)
 
-func _animar_salida(destino_x: float) -> void:
+func animar_salida(destino_x: float) -> void:
 	puede_interactuar = false
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(cliente, "global_position:x", destino_x, 0.5)\
@@ -118,23 +111,8 @@ func _animar_salida(destino_x: float) -> void:
 		se_ha_ido.emit()
 		queue_free()
 	)
-
-func calcular_tiempo_limite() -> float:
-	print(tiempo_ha_cambiado)
-	if tiempo_ha_cambiado:
-		print("si")
-		tiempo_limite.wait_time = tiempo_actualizado.wait_time
-		tiempo_ha_cambiado = false
-		print("Tiempo es:", tiempo_limite.wait_time)
-		return tiempo_limite.wait_time
-	else:
-		return tiempo_limite.wait_time
 	
 func reducir_tiempo():
-	tiempo_actualizado.wait_time = tiempo_limite.wait_time * 0.5
-	print("Reducido tiempo:", tiempo_actualizado.wait_time)
-	tiempo_ha_cambiado = true
-
-func _on_tiempo_limite_timeout() -> void:
-	print("Se acabó el tiempo")
-	_animar_salida(-cliente.size.x - 100) 
+	get_parent().tiempo_actualizado.wait_time = get_parent().tiempo_limite.wait_time * 0.5
+	print("Reducido tiempo:", get_parent().tiempo_actualizado.wait_time)
+	get_parent().tiempo_ha_cambiado = true

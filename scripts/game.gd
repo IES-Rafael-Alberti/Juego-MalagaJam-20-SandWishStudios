@@ -11,6 +11,12 @@ var categoria_global: String = ""
 var categoria_pendiente: String= ""
 var timeout_pausado := false
 
+var tiempo_ha_cambiado : bool
+
+@onready var tiempo_limite: Timer = $TiempoLimite
+@onready var tiempo_actualizado: Timer = $TiempoActualizado
+
+var invitado
 
 func _ready() -> void:
 	randomize()
@@ -39,6 +45,7 @@ func generarInvitado():
 		notes.actualizar_estado(categoria_global)
 
 	instancia_actual = invitado_escena.instantiate()
+	invitado = instancia_actual
 	add_child(instancia_actual)
 
 	if categoria_global != "":
@@ -50,6 +57,8 @@ func generarInvitado():
 	if categoria_global == "":
 		categoria_global = instancia_actual.categoria_actual
 		notes.actualizar_estado(categoria_global)
+	
+	tiempo_limite.start()
 
 func dejarPasar():
 	if is_instance_valid(instancia_actual):
@@ -80,3 +89,18 @@ func _rearmar_timer_si_timeout() -> void:
 		
 func finJuego():
 	get_tree().quit()
+
+func calcular_tiempo_limite() -> float:
+	print(tiempo_ha_cambiado)
+	if tiempo_ha_cambiado:
+		print("si")
+		tiempo_limite.wait_time = tiempo_actualizado.wait_time
+		tiempo_ha_cambiado = false
+		print("Tiempo es:", tiempo_limite.wait_time)
+		return tiempo_limite.wait_time
+	else:
+		return tiempo_limite.wait_time
+
+func _on_tiempo_limite_timeout() -> void:
+	print("Se acabó el tiempo")
+	invitado.animar_salida(invitado.size.x - 100)

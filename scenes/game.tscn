@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://daddobmomnce1"]
 
 [ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://b5ugfnb8bwnqs" path="res://scripts/game.gd" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://k5lqehb26keb" path="res://scenes/notes.tscn" id="3_wrm1d"]
+[ext_resource type="Script" uid="uid://b5ugfnb8bwnqs" path="res://Scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://k5lqehb26keb" path="res://Scenes/notes.tscn" id="3_wrm1d"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -73,7 +73,13 @@ show_percentage = false
 wait_time = 100.0
 autostart = true
 
+[node name="TiempoLimite" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="TiempoActualizado" type="Timer" parent="."]
+
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
 [connection signal="timeout" from="TimerCambio" to="." method="cambioFiesta"]
 [connection signal="timeout" from="TimerJuego" to="." method="finJuego"]
+[connection signal="timeout" from="TiempoLimite" to="." method="_on_tiempo_limite_timeout"]
