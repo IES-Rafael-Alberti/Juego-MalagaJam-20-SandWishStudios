@@ -3,14 +3,19 @@ extends Control
 const ventanaSettings := preload("res://Scenes/settings.tscn")
 @onready var label_play: Label = $LabelPlay
 @onready var label_settings: Label = $LabelSettings
+@onready var bgm: AudioStreamPlayer = $BGM
+
+var audio_manager : Audio
 
 var blanco := Color(18.892, 18.892, 18.892, 1.0)
 var negro := Color(0.0, 0.0, 0.0, 1.0)
 var font_size = 64
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	audio_manager = Audio.new()
+	audio_manager.set_player(bgm)
+	audio_manager.playMenu()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
