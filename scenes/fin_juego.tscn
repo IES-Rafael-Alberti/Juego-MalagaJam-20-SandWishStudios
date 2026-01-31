@@ -41,10 +41,10 @@ texture_normal = ExtResource("1_bm51o")
 
 [node name="FinLb" type="Label" parent="TextureRect"]
 layout_mode = 0
-offset_left = 432.0
-offset_top = 208.0
-offset_right = 725.0
-offset_bottom = 349.0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 421.0
+offset_bottom = 413.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Fin
@@ -53,12 +53,12 @@ Conseguiste
 Puntos"
 horizontal_alignment = 1
 
-[node name="puntuacion" type="Label" parent="TextureRect"]
+[node name="puntuacionLb" type="Label" parent="TextureRect"]
 layout_mode = 0
-offset_left = 544.0
-offset_top = 349.0
-offset_right = 630.0
-offset_bottom = 418.0
+offset_left = 232.0
+offset_top = 280.0
+offset_right = 318.0
+offset_bottom = 349.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "000"
