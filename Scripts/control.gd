@@ -33,6 +33,7 @@ var duracion_anim: float = 0.5
 @onready var tiempo_limite: Timer = $TiempoLimite
 
 func _ready() -> void:
+	progress_bar_radial.visible = false
 	tiempo_limite.wait_time = tiempo_maximo
 	
 	_configurar_barra_radial()
@@ -105,7 +106,7 @@ func _process(_delta: float) -> void:
 		progress_bar_radial.value = porcentaje
 		progress_bar_radial.visible = true
 		
-		progress_bar_radial.global_position = cliente.global_position + Vector2(-10, -10)
+		progress_bar_radial.global_position = cliente.global_position + Vector2(cliente.size.x - 20, -10)
 		
 		if porcentaje > 50:
 			progress_bar_radial.tint_progress = Color.SPRING_GREEN
@@ -115,18 +116,20 @@ func _process(_delta: float) -> void:
 			progress_bar_radial.tint_progress = Color.TOMATO
 	else:
 		progress_bar_radial.visible = false
-
 func _configurar_barra_radial() -> void:
 	var gradiente = Gradient.new()
-	gradiente.offsets = [0.0, 0.8, 0.85, 1.0]
-	gradiente.colors = [Color.WHITE, Color.WHITE, Color.TRANSPARENT, Color.TRANSPARENT]
+	gradiente.offsets = [0.0, 0.95, 1.0]
+	gradiente.colors = [Color.WHITE, Color.WHITE, Color.TRANSPARENT]
 	
 	var tex = GradientTexture2D.new()
 	tex.gradient = gradiente
 	tex.fill = GradientTexture2D.FILL_RADIAL
 	tex.fill_from = Vector2(0.5, 0.5)
-	tex.width = 64
-	tex.height = 64
+	
+	tex.fill_to = Vector2(0.5, 0.0) 
+	
+	tex.width = 48
+	tex.height = 48
 	
 	progress_bar_radial.texture_under = tex
 	progress_bar_radial.texture_progress = tex
@@ -135,8 +138,8 @@ func _configurar_barra_radial() -> void:
 	progress_bar_radial.fill_mode = TextureProgressBar.FILL_CLOCKWISE
 	progress_bar_radial.min_value = 0
 	progress_bar_radial.max_value = 100
-	progress_bar_radial.custom_minimum_size = Vector2(50, 50)
-
+	
+	progress_bar_radial.custom_minimum_size = Vector2(38, 38)
 func avanzar_al_centro() -> void:
 	en_cola = false
 	var centro_x = get_viewport_rect().size.x / 2
