@@ -46,6 +46,9 @@ func cambioFiesta():
 	if is_instance_valid(instancia_actual):
 		var nueva_cat = instancia_actual.obtener_otra_categoria(categoria_global)
 		categoria_global = nueva_cat
-		print("¡Cambio de fiesta! Siguiente invitado será: ", categoria_global)
+		print("Cambio de fiesta. Siguiente invitado será: ", categoria_global)
 		
 		timer_cambio.start()
+		
+func finJuego():
+	get_tree().quit()

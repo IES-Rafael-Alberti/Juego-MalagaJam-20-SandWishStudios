@@ -91,4 +91,4 @@ func _animar_salida(destino_x: float) -> void:
 
 func _on_tiempo_limite_timeout() -> void:
 	print("Se acabó el tiempo")
-	_animar_salida(-cliente.size.x - 100) # Replace with function body.
+	_animar_salida(-cliente.size.x - 100) 
