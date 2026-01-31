@@ -9,15 +9,23 @@ var puede_interactuar: bool = false
 var mascarasDict: Dictionary = {}
 var categoria_actual: String = ""
 var mascara_categoria: String = ""
+var esvip: bool
+
 
 @export var mascaras_mexicanas : Array[MascaraData]
 @export var mascaras_tiki : Array[MascaraData]
 @export var mascaras_carnaval : Array[MascaraData]
 @export var mascaras_japon : Array[MascaraData]
-
+@export var aumento: int = 100
+@export var reduccion: int = -50
+@export var ausencia: int = -25
+@export var prob_vip: float = 0.05
 @onready var tiempo_limite: Timer = $TiempoLimite
 
 func _ready() -> void:
+	esvip = randf() <= prob_vip
+	if esvip:
+		cliente.modulate = Color.GOLD
 	mascarasDict = {
 		"mexicanas": mascaras_mexicanas,
 		"tiki": mascaras_tiki,
@@ -75,8 +83,10 @@ func _on_boton_si_pressed() -> void:
 	
 	if mascara_categoria == categoria_actual:
 		print("BIEN ")
+		aumentar_puntuacion()
 	else:
 		print(" MAL ")
+		reducir_puntuacion(1)
 	
 	_animar_salida(get_viewport_rect().size.x + 100)
 
@@ -85,8 +95,10 @@ func _on_boton_no_pressed() -> void:
 
 	if mascara_categoria != categoria_actual:
 		print("BIEN ")
+		aumentar_puntuacion()
 	else:
 		print("MAL")
+		reducir_puntuacion(1)
 
 	_animar_salida(-cliente.size.x - 100)
 
@@ -106,4 +118,15 @@ func _animar_salida(destino_x: float) -> void:
 
 func _on_tiempo_limite_timeout() -> void:
 	print("Se acabó el tiempo")
+	reducir_puntuacion(2)
 	_animar_salida(-cliente.size.x - 100) 
+	
+func aumentar_puntuacion():
+	get_parent().puntuacion += aumento
+	print(aumento)
+func reducir_puntuacion(valor: int):
+	if valor == 1:
+		get_parent().puntuacion += reduccion
+	else:
+		get_parent().puntuacion += ausencia
+	print(reduccion)

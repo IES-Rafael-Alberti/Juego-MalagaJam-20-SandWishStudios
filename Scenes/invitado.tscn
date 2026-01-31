@@ -31,6 +31,10 @@ mascaras_mexicanas = Array[ExtResource("2_m5c13")]([ExtResource("3_x20te"), ExtR
 mascaras_tiki = Array[ExtResource("2_m5c13")]([ExtResource("8_ktfuw"), ExtResource("9_e642p"), ExtResource("10_040fu"), ExtResource("11_qqayf"), ExtResource("12_o7750")])
 mascaras_carnaval = Array[ExtResource("2_m5c13")]([ExtResource("13_egyrs"), ExtResource("14_sgdo2"), ExtResource("15_7y78i"), ExtResource("16_sj07f"), ExtResource("17_4hrnb")])
 mascaras_japon = Array[ExtResource("2_m5c13")]([ExtResource("18_rv72e"), ExtResource("19_oj1fu"), ExtResource("20_q6ist"), ExtResource("21_b3cf0"), ExtResource("17_4hrnb")])
+aumento = null
+reduccion = null
+ausencia = null
+prob_vip = null
 
 [node name="Cliente" type="TextureRect" parent="."]
 layout_mode = 0

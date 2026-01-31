@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://daddobmomnce1"]
 
 [ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://b5ugfnb8bwnqs" path="res://scripts/game.gd" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://k5lqehb26keb" path="res://scenes/notes.tscn" id="3_wrm1d"]
+[ext_resource type="Script" uid="uid://b5ugfnb8bwnqs" path="res://Scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://k5lqehb26keb" path="res://Scenes/notes.tscn" id="3_wrm1d"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -72,6 +72,13 @@ show_percentage = false
 [node name="TimerJuego" type="Timer" parent="."]
 wait_time = 100.0
 autostart = true
+
+[node name="puntuacion" type="Label" parent="."]
+offset_left = 1028.0
+offset_top = -54.0
+offset_right = 1092.0
+offset_bottom = -15.0
+theme_override_font_sizes/font_size = 28
 
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
