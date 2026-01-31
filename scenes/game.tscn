@@ -25,7 +25,7 @@ position = Vector2(575, 324)
 [node name="PanelInf" type="TextureRect" parent="."]
 offset_left = -3.0
 offset_top = -113.0
-offset_right = 1149.0
+offset_right = 1150.0
 offset_bottom = 751.0
 pivot_offset = Vector2(570, 285)
 texture = ExtResource("2_3dryh")
@@ -109,12 +109,12 @@ vertical_alignment = 1
 [node name="title2" type="Label" parent="."]
 offset_left = 52.0
 offset_top = 21.0
-offset_right = 231.0
+offset_right = 227.0
 offset_bottom = 67.0
 theme_override_colors/font_color = Color(0.9796867, 0.89602906, 1, 1)
 theme_override_fonts/font = ExtResource("9_rfjv2")
 theme_override_font_sizes/font_size = 40
-text = "HypeMeter"
+text = " Adrenaline"
 horizontal_alignment = 2
 vertical_alignment = 1
 
