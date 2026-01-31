@@ -9,15 +9,25 @@ var puede_interactuar: bool = false
 var mascarasDict: Dictionary = {}
 var categoria_actual: String = ""
 var mascara_categoria: String = ""
+var esvip: bool
+var num_aciertos: int = 0
 
 @export var mascaras_mexicanas : Array[MascaraData]
 @export var mascaras_tiki : Array[MascaraData]
 @export var mascaras_carnaval : Array[MascaraData]
 @export var mascaras_japon : Array[MascaraData]
-
-var num_aciertos = 0
+@export var aumento: int = 100
+@export var reduccion: int = -50
+@export var ausencia: int = -25
+@export var prob_vip: float = 0.2
+@export var inc_vip: float = 0.2
+@onready var tiempo_limite: Timer = $TiempoLimite
 
 func _ready() -> void:
+	esvip = randf() <= prob_vip
+	if esvip:
+		cliente.modulate = Color.GOLD
+		
 	mascarasDict = {
 		"mexicanas": mascaras_mexicanas,
 		"tiki": mascaras_tiki,
@@ -41,9 +51,8 @@ func _ready() -> void:
 	tween.set_parallel(false)
 	tween.tween_callback(func(): puede_interactuar = true)
 	
-	get_parent().tiempo_limite.wait_time = get_parent().calcular_tiempo_limite()
-	
-	print("Tiempo ready:", get_parent().tiempo_limite.wait_time)
+	tiempo_limite.wait_time = get_parent().calcular_tiempo_limite()
+	tiempo_limite.start()
 
 func obtener_otra_categoria(actual: String) -> String:
 	var categorias = mascarasDict.keys()
@@ -74,31 +83,32 @@ func _on_boton_si_pressed() -> void:
 	if not puede_interactuar: return
 	
 	if mascara_categoria == categoria_actual:
-		print("BIEN ")
-		#num_aciertos = 10
-		num_aciertos += 0
+		aumentar_puntuacion()
+		num_aciertos += 1
 		if num_aciertos >= 10:
 			reducir_tiempo()
+		
+		if esvip:
+			get_parent().multiplicador += inc_vip
 	else:
-		print(" MAL ")
+		reducir_puntuacion(1)
 	
-	animar_salida(get_viewport_rect().size.x + 100)
+	_animar_salida(get_viewport_rect().size.x + 100)
 
 func _on_boton_no_pressed() -> void:
 	if not puede_interactuar: return
 
 	if mascara_categoria != categoria_actual:
-		print("BIEN ")
-		#num_aciertos = 10
-		num_aciertos += 0
+		aumentar_puntuacion()
+		num_aciertos += 1
 		if num_aciertos >= 10:
 			reducir_tiempo()
 	else:
-		print("MAL")
+		reducir_puntuacion(1)
 
-	animar_salida(-cliente.size.x - 100)
+	_animar_salida(-cliente.size.x - 100)
 
-func animar_salida(destino_x: float) -> void:
+func _animar_salida(destino_x: float) -> void:
 	puede_interactuar = false
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(cliente, "global_position:x", destino_x, 0.5)\
@@ -111,8 +121,20 @@ func animar_salida(destino_x: float) -> void:
 		se_ha_ido.emit()
 		queue_free()
 	)
-	
+
 func reducir_tiempo():
-	get_parent().tiempo_actualizado.wait_time = get_parent().tiempo_limite.wait_time * 0.5
-	print("Reducido tiempo:", get_parent().tiempo_actualizado.wait_time)
+	get_parent().tiempo_actualizado.wait_time = get_parent().tiempo_limite.wait_time * 0.8
 	get_parent().tiempo_ha_cambiado = true
+
+func _on_tiempo_limite_timeout() -> void:
+	reducir_puntuacion(2)
+	_animar_salida(-cliente.size.x - 100) 
+	
+func aumentar_puntuacion():
+	get_parent().puntuacion += int(aumento * get_parent().multiplicador)
+	
+func reducir_puntuacion(valor: int):
+	if valor == 1:
+		get_parent().puntuacion += reduccion
+	else:
+		get_parent().puntuacion += ausencia

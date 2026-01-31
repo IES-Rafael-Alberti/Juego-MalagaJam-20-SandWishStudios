@@ -2,34 +2,39 @@ extends Node2D
 
 @onready var invitado_escena = preload("res://Scenes/invitado.tscn")
 @onready var notes = $notes
-
-var instancia_actual = null
+@onready var multiplicadorLabel: Label = $multiplicador
+@onready var puntuacionLabel: Label = $puntuacion
 @onready var timer_cambio: Timer = $TimerCambio
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var tiempo_limite: Timer = $TiempoLimite
+@onready var tiempo_actualizado: Timer = $TiempoActualizado
+
+var instancia_actual = null
+var puntuacion: int = 0:
+	set(valor):
+		puntuacion = valor
+		_actualizar_ui()
+
+var multiplicador: float = 1.0:
+	set(valor):
+		multiplicador = valor
+		_actualizar_ui()
 
 var categoria_global: String = ""
 var categoria_pendiente: String= ""
 var timeout_pausado := false
-
-var tiempo_ha_cambiado : bool
-
-@onready var tiempo_limite: Timer = $TiempoLimite
-@onready var tiempo_actualizado: Timer = $TiempoActualizado
-
-var invitado
+var tiempo_ha_cambiado : bool = false
 
 func _ready() -> void:
 	randomize()
-	
 	timer_cambio.timeout.connect(cambioFiesta)
-	
 	progress_bar.max_value = timer_cambio.wait_time
 	progress_bar.value = timer_cambio.wait_time
-	
+	_actualizar_ui()
 	generarInvitado()
-	timer_cambio.start() 
+	timer_cambio.start()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	actTimerCambio()
 
 func actTimerCambio() -> void:
@@ -45,7 +50,6 @@ func generarInvitado():
 		notes.actualizar_estado(categoria_global)
 
 	instancia_actual = invitado_escena.instantiate()
-	invitado = instancia_actual
 	add_child(instancia_actual)
 
 	if categoria_global != "":
@@ -57,8 +61,6 @@ func generarInvitado():
 	if categoria_global == "":
 		categoria_global = instancia_actual.categoria_actual
 		notes.actualizar_estado(categoria_global)
-	
-	tiempo_limite.start()
 
 func dejarPasar():
 	if is_instance_valid(instancia_actual):
@@ -77,7 +79,6 @@ func cambioFiesta():
 	
 	if is_instance_valid(instancia_actual):
 		categoria_pendiente = instancia_actual.obtener_otra_categoria(categoria_global)
-		print("¡Cambio de fiesta pendiente! Siguiente invitado será: ", categoria_pendiente)
 
 	timer_cambio.start()
 
@@ -86,21 +87,18 @@ func _rearmar_timer_si_timeout() -> void:
 		timeout_pausado = false
 		progress_bar.value = timer_cambio.wait_time
 		timer_cambio.start()
-		
+
+func _actualizar_ui() -> void:
+	if puntuacionLabel:
+		puntuacionLabel.text = str(puntuacion)
+	if multiplicadorLabel:
+		multiplicadorLabel.text = "x %.1f" % multiplicador
+
 func finJuego():
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://scenes/fin_juego.tscn")
 
 func calcular_tiempo_limite() -> float:
-	print(tiempo_ha_cambiado)
 	if tiempo_ha_cambiado:
-		print("si")
 		tiempo_limite.wait_time = tiempo_actualizado.wait_time
 		tiempo_ha_cambiado = false
-		print("Tiempo es:", tiempo_limite.wait_time)
-		return tiempo_limite.wait_time
-	else:
-		return tiempo_limite.wait_time
-
-func _on_tiempo_limite_timeout() -> void:
-	print("Se acabó el tiempo")
-	invitado.animar_salida(invitado.size.x - 100)
+	return tiempo_limite.wait_time

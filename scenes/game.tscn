@@ -78,6 +78,21 @@ wait_time = 5.0
 
 [node name="TiempoActualizado" type="Timer" parent="."]
 
+[node name="puntuacion" type="Label" parent="."]
+offset_left = 991.0
+offset_top = -48.0
+offset_right = 1055.0
+offset_bottom = -9.0
+theme_override_font_sizes/font_size = 28
+
+[node name="multiplicador" type="Label" parent="."]
+offset_left = 1074.0
+offset_top = -47.0
+offset_right = 1120.0
+offset_bottom = -8.0
+theme_override_font_sizes/font_size = 28
+text = "x 1"
+
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
 [connection signal="timeout" from="TimerCambio" to="." method="cambioFiesta"]
