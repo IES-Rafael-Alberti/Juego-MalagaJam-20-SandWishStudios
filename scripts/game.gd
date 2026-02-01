@@ -47,6 +47,8 @@ var tex_entra_normal: Texture2D
 var tex_fuera_normal: Texture2D
 
 @onready var bgm: AudioStreamPlayer = $BGM
+@onready var audio_fuera: AudioStreamPlayer = $PanelInf/Fuera/AudioFuera
+@onready var audio_entra: AudioStreamPlayer = $PanelInf/Entra/AudioEntra
 
 var audio_manager : Audio
 
@@ -187,11 +189,19 @@ func dejarPasar():
 	if is_instance_valid(instancia_actual):
 		_rearmar_timer_si_timeout()
 		instancia_actual._on_boton_si_pressed()
+		
+		#audio_manager = Audio.new()
+		audio_manager.set_player(audio_entra)
+		audio_manager.playYes()
 
 func dejarSalir():
 	if is_instance_valid(instancia_actual):
 		_rearmar_timer_si_timeout()
 		instancia_actual._on_boton_no_pressed()
+		
+		#audio_manager = Audio.new()
+		audio_manager.set_player(audio_fuera)
+		audio_manager.playNo()
 		
 func cambioFiesta():
 	timeout_pausado = true
