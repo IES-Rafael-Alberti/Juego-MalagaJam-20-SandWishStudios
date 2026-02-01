@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="MascaraData" load_steps=3 format=3 uid="uid://b6tkk40qxppmi"]
+[gd_resource type="Resource" script_class="MascaraData" load_steps=3 format=3 uid="uid://dbcrdfkpgq4p1"]
 
-[ext_resource type="Texture2D" uid="uid://bhpdfst6ee1u2" path="res://Assets/tiki/tiki2.jpg" id="1_gvemn"]
-[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://scripts/MascaraData.gd" id="2_to6jk"]
+[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://Scripts/MascaraData.gd" id="1_68ah4"]
+[ext_resource type="Texture2D" uid="uid://dy6vib38nc1c8" path="res://Assets/Tiki/Tiki2.png" id="1_gvemn"]
 
 [resource]
-script = ExtResource("2_to6jk")
-name = "scsc"
+script = ExtResource("1_68ah4")
 icon = ExtResource("1_gvemn")
 metadata/_custom_type_script = "uid://cwaa4fawds7pw"

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="MascaraData" load_steps=3 format=3 uid="uid://b3v8r3t3c3ohg"]
+[gd_resource type="Resource" script_class="MascaraData" load_steps=3 format=3 uid="uid://dk51ug6b6pqit"]
 
-[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://scripts/MascaraData.gd" id="1_nc5kb"]
-[ext_resource type="Texture2D" uid="uid://byfxjedljgdsu" path="res://Assets/carnaval/carnaval4.jpg" id="1_w344x"]
+[ext_resource type="Texture2D" uid="uid://b3p10doow11p" path="res://Assets/Carnaval/Carn4.png" id="1_f5hk8"]
+[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://Scripts/MascaraData.gd" id="1_v2kg6"]
 
 [resource]
-script = ExtResource("1_nc5kb")
-icon = ExtResource("1_w344x")
+script = ExtResource("1_v2kg6")
+tipo = 2
+icon = ExtResource("1_f5hk8")
 metadata/_custom_type_script = "uid://cwaa4fawds7pw"

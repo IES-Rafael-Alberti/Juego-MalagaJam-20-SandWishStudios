@@ -57,6 +57,8 @@ offset_right = 166.0
 offset_bottom = 171.0
 texture = ExtResource("5_ldgsr")
 
+[node name="AudioFuera" type="AudioStreamPlayer" parent="PanelInf/Fuera"]
+
 [node name="Entra" type="TextureButton" parent="PanelInf"]
 layout_mode = 0
 offset_left = 375.0
@@ -76,6 +78,8 @@ offset_top = 101.0
 offset_right = 175.0
 offset_bottom = 175.0
 texture = ExtResource("8_o5yvi")
+
+[node name="AudioEntra" type="AudioStreamPlayer" parent="PanelInf/Entra"]
 
 [node name="TimerCambio" type="Timer" parent="."]
 wait_time = 15.0
@@ -163,6 +167,12 @@ theme_override_font_sizes/font_size = 47
 text = "1:40"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
+
+[node name="cartel" type="TextureRect" parent="."]
+offset_left = 882.0
+offset_top = -62.0
+offset_right = 1099.0
+offset_bottom = 239.0
 
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
