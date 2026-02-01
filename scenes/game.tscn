@@ -168,6 +168,12 @@ text = "1:40"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 
+[node name="cartel" type="TextureRect" parent="."]
+offset_left = 882.0
+offset_top = -62.0
+offset_right = 1099.0
+offset_bottom = 239.0
+
 [connection signal="pressed" from="PanelInf/Fuera" to="." method="dejarSalir"]
 [connection signal="pressed" from="PanelInf/Entra" to="." method="dejarPasar"]
 [connection signal="timeout" from="TimerCambio" to="." method="cambioFiesta"]
