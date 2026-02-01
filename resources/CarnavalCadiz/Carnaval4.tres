@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MascaraData" load_steps=3 format=3 uid="uid://dk51ug6b6pqit"]
 
-[ext_resource type="Texture2D" uid="uid://b3p10doow11p" path="res://Assets/Carnaval/Carn4.png" id="1_f5hk8"]
+[ext_resource type="Texture2D" uid="uid://c55font6fm1wf" path="res://Assets/Carnaval/Carn4.png" id="1_f5hk8"]
 [ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://Scripts/MascaraData.gd" id="1_v2kg6"]
 
 [resource]

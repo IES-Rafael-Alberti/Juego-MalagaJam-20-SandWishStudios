@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="MascaraData" load_steps=3 format=3 uid="uid://dvt4a18bn1q1l"]
 
 [ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://Scripts/MascaraData.gd" id="1_41s2m"]
-[ext_resource type="Texture2D" uid="uid://bdkld7kuywfy0" path="res://Assets/Carnaval/Carn1.png" id="1_y8lcp"]
+[ext_resource type="Texture2D" uid="uid://c3gyp7t4kuas3" path="res://Assets/Carnaval/Carn1.png" id="1_y8lcp"]
 
 [resource]
 script = ExtResource("1_41s2m")
