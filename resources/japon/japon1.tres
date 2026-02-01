@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="MascaraData" load_steps=3 format=3 uid="uid://bsl2wmg2vt87e"]
 
-[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://scripts/MascaraData.gd" id="1_m1hes"]
-[ext_resource type="Texture2D" uid="uid://dbm7e6dw2y6un" path="res://Assets/japon/japon1.jpg" id="1_nku5y"]
+[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://Scripts/MascaraData.gd" id="1_m1hes"]
+[ext_resource type="Texture2D" uid="uid://brc47xlu2fa18" path="res://Assets/Japonesas/Jap1.png" id="1_nku5y"]
 
 [resource]
 script = ExtResource("1_m1hes")
+tipo = 1
 icon = ExtResource("1_nku5y")
 metadata/_custom_type_script = "uid://cwaa4fawds7pw"

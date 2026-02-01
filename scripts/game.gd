@@ -1,16 +1,22 @@
 extends Node2D
 
 @onready var invitado_escena = preload("res://Scenes/invitado.tscn")
-@onready var fin_juego_scene: PackedScene = preload("res://scenes/fin_juego.tscn")
+@onready var fin_juego_scene: PackedScene = preload("res://Scenes/fin_juego.tscn")
 @onready var notes = $notes
 @onready var multiplicadorLabel: Label = $multiplicador
 @onready var puntuacionLabel: Label = $puntuacion
+@onready var cartel: TextureRect = $cartel
 
 @onready var timer_juego: Timer = $TimerJuego
 @onready var label_reloj: Label = $reloj/tiempoRes
 
 @onready var btn_entra: TextureButton = $PanelInf/Entra
 @onready var btn_fuera: TextureButton = $PanelInf/Fuera
+
+const CARTEL_TIKI = preload("res://Assets/carteles/Tiki.png")
+const CARTEL_JAPON = preload("res://Assets/carteles/Nipón.png")
+const CARTEL_CARNAVAL = preload("res://Assets/carteles/Carnaval.png")
+const CARTEL_MEXICO = preload("res://Assets/carteles/Mexican.png")
 
 var instancia_actual = null
 var instancia_siguiente = null 
@@ -47,8 +53,11 @@ var tex_entra_normal: Texture2D
 var tex_fuera_normal: Texture2D
 
 @onready var bgm: AudioStreamPlayer = $BGM
+@onready var audio_fuera: AudioStreamPlayer = $PanelInf/Fuera/AudioFuera
+@onready var audio_entra: AudioStreamPlayer = $PanelInf/Entra/AudioEntra
 
 var audio_manager : Audio
+var tween_cartel: Tween
 
 func _ready() -> void:
 	randomize()
@@ -113,17 +122,41 @@ func actTimerCambio() -> void:
 		
 		if timer_cambio.time_left <= tiempo_aviso and not avisando_cambio:
 			avisando_cambio = true
-			notes.iniciar_parpadeo()
+			iniciar_parpadeo_cartel()
 		elif timer_cambio.time_left > tiempo_aviso and avisando_cambio and categoria_pendiente == "":
 			avisando_cambio = false
-			notes.detener_parpadeo()
+			detener_parpadeo_cartel()
+
+func iniciar_parpadeo_cartel() -> void:
+	if tween_cartel and tween_cartel.is_valid():
+		tween_cartel.kill()
+	
+	tween_cartel = create_tween().set_loops()
+	tween_cartel.tween_property(cartel, "modulate", Color(1, 0.6, 0.6), 0.5)
+	tween_cartel.tween_property(cartel, "modulate", Color.WHITE, 0.5)
+
+func detener_parpadeo_cartel() -> void:
+	if tween_cartel and tween_cartel.is_valid():
+		tween_cartel.kill()
+	cartel.modulate = Color.WHITE
+
+func actualizar_cartel_textura(categoria: String) -> void:
+	match categoria:
+		"tiki": cartel.texture = CARTEL_TIKI
+		"japon": cartel.texture = CARTEL_JAPON
+		"carnaval": cartel.texture = CARTEL_CARNAVAL
+		"mexicanas": cartel.texture = CARTEL_MEXICO
 
 func generarInvitado():
 	if categoria_pendiente != "":
 		categoria_global = categoria_pendiente
 		categoria_pendiente = ""
+		
 		notes.actualizar_estado(categoria_global)
 		notes.notificar_cambio()
+		
+		actualizar_cartel_textura(categoria_global)
+		detener_parpadeo_cartel()
 		avisando_cambio = false
 	
 	var vel_anim = clamp(tiempo_limite_actual * 0.1, 0.1, 0.5)
@@ -157,6 +190,7 @@ func generarInvitado():
 	if categoria_global == "":
 		categoria_global = instancia_actual.categoria_actual
 		notes.actualizar_estado(categoria_global)
+		actualizar_cartel_textura(categoria_global)
 		
 	_crear_invitado_en_cola()
 
@@ -187,11 +221,17 @@ func dejarPasar():
 	if is_instance_valid(instancia_actual):
 		_rearmar_timer_si_timeout()
 		instancia_actual._on_boton_si_pressed()
+		
+		audio_manager.set_player(audio_entra)
+		audio_manager.playYes()
 
 func dejarSalir():
 	if is_instance_valid(instancia_actual):
 		_rearmar_timer_si_timeout()
 		instancia_actual._on_boton_no_pressed()
+		
+		audio_manager.set_player(audio_fuera)
+		audio_manager.playNo()
 		
 func cambioFiesta():
 	timeout_pausado = true
@@ -229,7 +269,6 @@ func _cambiar_a_fin_juego():
 	fin_scene.puntosBase = puntuacion
 	fin_scene.multiplicador = multiplicador
 
-	# Quitar la escena actual de forma segura
 	if get_tree().current_scene:
 		get_tree().current_scene.queue_free()
 

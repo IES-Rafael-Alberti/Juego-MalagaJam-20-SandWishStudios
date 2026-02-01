@@ -206,6 +206,7 @@ func obtener_otra_categoria(actual: String) -> String:
 
 func _generar_mascara() -> void:
 	if categoria_actual == "":
+		print(mascarasDict.keys())
 		categoria_actual = mascarasDict.keys().pick_random()
 
 	if randf() <= 0.5:
@@ -241,6 +242,8 @@ func _on_boton_no_pressed() -> void:
 
 	if mascara_categoria != categoria_actual:
 		aumentar_puntuacion()
+		if esvip:
+			get_parent().multiplicador += inc_vip
 	else:
 		reducir_puntuacion(1)
 
