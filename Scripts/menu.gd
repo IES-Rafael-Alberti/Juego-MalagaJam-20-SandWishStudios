@@ -11,13 +11,11 @@ var blanco := Color(18.892, 18.892, 18.892, 1.0)
 var negro := Color(0.0, 0.0, 0.0, 1.0)
 var font_size = 64
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	audio_manager = Audio.new()
 	audio_manager.set_player(bgm)
 	audio_manager.playMenu()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
@@ -46,7 +44,7 @@ func _on_boton_play_mouse_exited() -> void:
 func _on_boton_settings_mouse_entered() -> void:
 	label_settings.label_settings = LabelSettings.new()
 	label_settings.label_settings.font_color = blanco
-	label_settings.label_settings.font_size = font_size # Replace with function body.
+	label_settings.label_settings.font_size = font_size 
 
 
 func _on_boton_settings_mouse_exited() -> void:

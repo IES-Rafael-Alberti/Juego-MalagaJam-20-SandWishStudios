@@ -59,7 +59,7 @@ func iniciar_parpadeo() -> void:
 		tween_alerta.kill()
 	
 	tween_alerta = create_tween().set_loops()
-	tween_alerta.tween_property(self, "modulate", Color(1, 0.6, 0.6), 0.5) # Rojo suave
+	tween_alerta.tween_property(self, "modulate", Color(1, 0.6, 0.6), 0.5) 
 	tween_alerta.tween_property(self, "modulate", Color.WHITE, 0.5)
 
 func detener_parpadeo() -> void:

@@ -13,7 +13,6 @@ extends Node2D
 @onready var btn_entra: TextureButton = $PanelInf/Entra
 @onready var btn_fuera: TextureButton = $PanelInf/Fuera
 
-# Constantes de texturas para el cartel
 const CARTEL_TIKI = preload("res://Assets/carteles/Tiki.png")
 const CARTEL_JAPON = preload("res://Assets/carteles/Nipón.png")
 const CARTEL_CARNAVAL = preload("res://Assets/carteles/Carnaval.png")
@@ -88,7 +87,6 @@ func _ready() -> void:
 	audio_manager.set_player(bgm)
 	audio_manager.playGameplay()
 	
-	# Configuración inicial del cartel
 	_actualizar_pivot_cartel()
 
 func _process(delta: float) -> void:
@@ -121,22 +119,17 @@ func _actualizar_reloj() -> void:
 func actTimerCambio() -> void:
 	if timeout_pausado:
 		progress_bar.value = 0
-		# Si está pausado (esperando al jugador), el parpadeo continúa.
 	else:
 		progress_bar.value = timer_cambio.time_left
 		
-		# Iniciar aviso si queda poco tiempo y NO estamos avisando ya
 		if timer_cambio.time_left <= tiempo_aviso and not avisando_cambio:
 			iniciar_parpadeo_cartel()
 		
-		# Caso de seguridad: Si por alguna razón (bonus, etc) el tiempo sube, cancelamos aviso
 		elif timer_cambio.time_left > tiempo_aviso and avisando_cambio and categoria_pendiente == "":
 			detener_parpadeo_cartel()
 
-# --- Lógica Visual del Cartel ---
 
 func _actualizar_pivot_cartel() -> void:
-	# Importante: Pone el pivote en el centro para que escale bonito
 	cartel.pivot_offset = cartel.size / 2
 	cartel.scale = Vector2.ONE
 
@@ -146,7 +139,6 @@ func iniciar_parpadeo_cartel() -> void:
 		tween_cartel.kill()
 	
 	tween_cartel = create_tween().set_loops()
-	# Parpadeo translúcido: Alpha 0.4 <-> 1.0
 	tween_cartel.tween_property(cartel, "modulate", Color(1, 1, 1, 0.4), 0.5).set_ease(Tween.EASE_IN_OUT)
 	tween_cartel.tween_property(cartel, "modulate", Color.WHITE, 0.5).set_ease(Tween.EASE_IN_OUT)
 
@@ -157,7 +149,6 @@ func detener_parpadeo_cartel() -> void:
 	cartel.modulate = Color.WHITE
 
 func animar_cambio_cartel(nueva_categoria: String) -> void:
-	# 1. Detenemos cualquier parpadeo previo y reseteamos el estado
 	detener_parpadeo_cartel()
 	
 	var nueva_textura = null
@@ -170,21 +161,16 @@ func animar_cambio_cartel(nueva_categoria: String) -> void:
 	if nueva_textura:
 		var tween = create_tween()
 		
-		# Animación de salida (desaparecer)
 		tween.tween_property(cartel, "scale", Vector2.ZERO, 0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 		
-		# Callback para cambiar la textura y recalcular el pivote justo cuando es invisible
 		tween.tween_callback(func(): 
 			cartel.texture = nueva_textura
-			# Forzamos actualización de tamaño si es necesario y pivote
 			cartel.reset_size() 
 			cartel.pivot_offset = cartel.size / 2 
 		)
 		
-		# Animación de entrada (aparecer con rebote)
 		tween.tween_property(cartel, "scale", Vector2.ONE, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 
-# --------------------------------
 
 func generarInvitado():
 	if categoria_pendiente != "":
@@ -194,7 +180,6 @@ func generarInvitado():
 		notes.actualizar_estado(categoria_global)
 		notes.notificar_cambio()
 		
-		# Cambio visual del cartel
 		animar_cambio_cartel(categoria_global)
 	
 	var vel_anim = clamp(tiempo_limite_actual * 0.1, 0.1, 0.5)
@@ -229,7 +214,6 @@ func generarInvitado():
 		categoria_global = instancia_actual.categoria_actual
 		notes.actualizar_estado(categoria_global)
 		
-		# Asignación inicial de textura sin animación
 		match categoria_global:
 			"tiki": cartel.texture = CARTEL_TIKI
 			"japon": cartel.texture = CARTEL_JAPON
@@ -279,12 +263,10 @@ func dejarSalir():
 		audio_manager.playNo()
 		
 func cambioFiesta():
-	# El tiempo se ha agotado. Pausamos la lógica del timer visual.
 	timeout_pausado = true
 	timer_cambio.stop()
 	progress_bar.value = 0
 	
-	# El parpadeo CONTINÚA aquí (porque avisando_cambio sigue true y timeout_pausado es true)
 	
 	if is_instance_valid(instancia_actual):
 		categoria_pendiente = instancia_actual.obtener_otra_categoria(categoria_global)
@@ -293,14 +275,12 @@ func cambioFiesta():
 	timer_cambio.start()
 
 func _rearmar_timer_si_timeout() -> void:
-	# Esta función se llama cuando el jugador ACTÚA (dejar pasar/salir).
-	# Si estábamos en "timeout_pausado" (esperando el cambio), reseteamos todo.
+
 	if timeout_pausado:
 		timeout_pausado = false
 		progress_bar.value = timer_cambio.wait_time
 		timer_cambio.start()
 		
-		# CRÍTICO: Aquí es donde paramos el aviso, porque ya hemos atendido el cambio.
 		detener_parpadeo_cartel()
 
 func _actualizar_ui() -> void:
