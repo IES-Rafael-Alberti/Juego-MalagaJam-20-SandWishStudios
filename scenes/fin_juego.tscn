@@ -104,6 +104,8 @@ theme_override_fonts/font = ExtResource("4_qgy5n")
 theme_override_font_sizes/font_size = 40
 text = "Leaderboard"
 
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="TextureRect/Reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="TextureRect/Salir" to="." method="_on_salir_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
