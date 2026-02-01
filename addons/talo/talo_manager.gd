@@ -69,7 +69,7 @@ func _init_socket() -> void:
 func _notification(what: int):
 	match what:
 		NOTIFICATION_WM_CLOSE_REQUEST:
-			_do_flush()
+			#_do_flush()
 			if Talo.settings.handle_tree_quit:
 				get_tree().quit()
 		NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_APPLICATION_PAUSED:

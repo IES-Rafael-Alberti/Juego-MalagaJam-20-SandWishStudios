@@ -76,7 +76,7 @@ func _create_entry(entry: TaloLeaderboardEntry, index: int) -> void:
 	var lbl_rank = Label.new()
 	lbl_rank.text = "#%d" % (entry.position + 1)
 	lbl_rank.custom_minimum_size.x = 80
-	lbl_rank.add_theme_font_override("font", FONT_TITLE)
+	lbl_rank.add_theme_font_override("font", FONT_DIGITAL)
 	lbl_rank.add_theme_font_size_override("font_size", 40)
 	
 	if entry.position == 0: lbl_rank.modulate = COLOR_ORO

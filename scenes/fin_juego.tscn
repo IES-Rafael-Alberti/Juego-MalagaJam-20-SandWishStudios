@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b80x548xioafl"]
+[gd_scene load_steps=6 format=3 uid="uid://b80x548xioafl"]
 
 [ext_resource type="Script" uid="uid://dpn0651va5x1n" path="res://Scripts/fin_juego.gd" id="1_0aqx1"]
 [ext_resource type="Texture2D" uid="uid://b6b8pac14kwgq" path="res://Assets/ui/Score.png" id="2_de3it"]
 [ext_resource type="FontFile" uid="uid://dwgb56ietqfed" path="res://Assets/fonts/Urbana-®.ttf" id="3_fhiyh"]
 [ext_resource type="Texture2D" uid="uid://cirk165vwns0j" path="res://Assets/ui/Settings.png" id="3_qgy5n"]
 [ext_resource type="FontFile" uid="uid://b0l6clpjwwmvw" path="res://Assets/fonts/UrbanRiotDEMO-B85.ttf" id="4_qgy5n"]
-[ext_resource type="Texture2D" uid="uid://ctwee01kd60m4" path="res://Assets/ui/Play.png" id="5_gfubn"]
 
 [node name="FinJuego" type="Control"]
 layout_mode = 3
@@ -24,48 +23,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_de3it")
-
-[node name="Reiniciar" type="TextureButton" parent="TextureRect"]
-modulate = Color(0, 1, 0, 1)
-layout_mode = 0
-offset_left = 795.0
-offset_top = 646.0
-offset_right = 1016.0
-offset_bottom = 790.0
-texture_normal = ExtResource("5_gfubn")
-
-[node name="Label" type="Label" parent="TextureRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 0.28500003
-offset_left = 857.0
-offset_top = 693.0
-offset_right = 962.0
-offset_bottom = 492.75998
-theme_override_fonts/font = ExtResource("4_qgy5n")
-theme_override_font_sizes/font_size = 40
-text = "Restart"
-
-[node name="Salir" type="TextureButton" parent="TextureRect"]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 0
-offset_left = 140.0
-offset_top = 648.0
-offset_right = 352.0
-offset_bottom = 781.0
-texture_normal = ExtResource("5_gfubn")
-
-[node name="Label2" type="Label" parent="TextureRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 0.28500003
-offset_left = 218.0
-offset_top = 691.0
-offset_right = 281.0
-offset_bottom = 490.75998
-theme_override_fonts/font = ExtResource("4_qgy5n")
-theme_override_font_sizes/font_size = 40
-text = "Exit"
 
 [node name="puntuacionLb" type="Label" parent="TextureRect"]
 layout_mode = 1
@@ -106,6 +63,6 @@ text = "Leaderboard"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 
-[connection signal="pressed" from="TextureRect/Reiniciar" to="." method="_on_reiniciar_pressed"]
-[connection signal="pressed" from="TextureRect/Salir" to="." method="_on_salir_pressed"]
+[connection signal="mouse_entered" from="TextureButton" to="." method="_on_leaderboard_mouse_entered"]
+[connection signal="mouse_exited" from="TextureButton" to="." method="_on_leaderboard_mouse_exited"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

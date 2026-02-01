@@ -3,6 +3,7 @@ extends Control
 @onready var reiniciar: TextureButton = $TextureRect/Reiniciar
 @onready var salir: TextureButton = $TextureRect/Salir
 @onready var puntuacionLb: Label = $TextureRect/puntuacionLb
+@onready var leaderboard: TextureButton = $TextureButton
 
 var puntosBase: int = 0
 var multiplicador: float = 1.0
@@ -56,3 +57,11 @@ func _on_texture_button_pressed() -> void:
 	var total := int(round(puntosBase * multiplicador))
 	Global.last_score = total
 	get_tree().change_scene_to_file("res://addons/talo/samples/leaderboards/leaderboard.tscn")
+
+func _on_leaderboard_mouse_entered() -> void:
+
+	leaderboard.self_modulate = Color(0.7, 0.7, 0.7)
+
+func _on_leaderboard_mouse_exited() -> void:
+
+	leaderboard.self_modulate = Color.WHITE
