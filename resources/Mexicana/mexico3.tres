@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MascaraData" load_steps=3 format=3 uid="uid://cteaviynul21a"]
+
+[ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://Scripts/MascaraData.gd" id="1_75cyy"]
+[ext_resource type="Texture2D" uid="uid://lhwn6701yds" path="res://Assets/Mex/Mex3.png" id="1_ta1eg"]
+
+[resource]
+script = ExtResource("1_75cyy")
+tipo = 3
+icon = ExtResource("1_ta1eg")
+metadata/_custom_type_script = "uid://cwaa4fawds7pw"

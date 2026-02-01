@@ -1,27 +1,28 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpl7w2kd24tit"]
+[gd_scene load_steps=25 format=3 uid="uid://bpl7w2kd24tit"]
 
 [ext_resource type="Script" uid="uid://c7w4mbsnmrgn3" path="res://Scripts/control.gd" id="1_oebdd"]
 [ext_resource type="Texture2D" uid="uid://bcnht1qx4eixu" path="res://Assets/icon.svg" id="2_eqnrb"]
 [ext_resource type="Script" uid="uid://cwaa4fawds7pw" path="res://Scripts/MascaraData.gd" id="2_m5c13"]
-[ext_resource type="Resource" uid="uid://l7b0s4xkqluo" path="res://resources/Mexicana/mexicana1.tres" id="3_x20te"]
-[ext_resource type="Resource" uid="uid://cp50genednw8f" path="res://resources/Mexicana/mexicana2.tres" id="4_1k44g"]
-[ext_resource type="Resource" uid="uid://b0tyiwwmjdekd" path="res://resources/Mexicana/mexicana3.tres" id="5_nui76"]
-[ext_resource type="Resource" uid="uid://b4afj5u6f0ey0" path="res://resources/Mexicana/mexicana4.tres" id="6_aoows"]
-[ext_resource type="Resource" uid="uid://crgkchia6ql0m" path="res://resources/Mexicana/mexicana5.tres" id="7_sr3rl"]
-[ext_resource type="Resource" uid="uid://c7u62ij63jscc" path="res://resources/tiki/tiki1.tres" id="8_ktfuw"]
-[ext_resource type="Resource" uid="uid://b6tkk40qxppmi" path="res://resources/tiki/tiki2.tres" id="9_e642p"]
-[ext_resource type="Resource" uid="uid://8wiwdkgkapdw" path="res://resources/tiki/tiki3.tres" id="10_040fu"]
-[ext_resource type="Resource" uid="uid://cfvn7uyoxyotv" path="res://resources/tiki/tiki4.tres" id="11_qqayf"]
-[ext_resource type="Resource" uid="uid://d4hthm6uwm4xy" path="res://resources/tiki/tiki5.tres" id="12_o7750"]
-[ext_resource type="Resource" uid="uid://hkd8fjhv06du" path="res://resources/CarnavalCadiz/Carnaval1.tres" id="13_egyrs"]
-[ext_resource type="Resource" uid="uid://bp22wg520bmuk" path="res://resources/CarnavalCadiz/Carnaval2.tres" id="14_sgdo2"]
-[ext_resource type="Resource" uid="uid://dr256wlr8ciad" path="res://resources/CarnavalCadiz/Carnaval3.tres" id="15_7y78i"]
-[ext_resource type="Resource" uid="uid://b3v8r3t3c3ohg" path="res://resources/CarnavalCadiz/Carnaval4.tres" id="16_sj07f"]
-[ext_resource type="Resource" uid="uid://cabbybb6ppihj" path="res://resources/japon/japon5.tres" id="17_4hrnb"]
-[ext_resource type="Resource" uid="uid://bsl2wmg2vt87e" path="res://resources/japon/japon1.tres" id="18_rv72e"]
-[ext_resource type="Resource" uid="uid://d2lsomdms5jnx" path="res://resources/japon/japon2.tres" id="19_oj1fu"]
-[ext_resource type="Resource" uid="uid://c2cc4w6uds0pf" path="res://resources/japon/japon3.tres" id="20_q6ist"]
-[ext_resource type="Resource" uid="uid://bbeni7lyld7gx" path="res://resources/japon/japon4.tres" id="21_b3cf0"]
+[ext_resource type="Resource" uid="uid://bk7paw6h2fpuu" path="res://resources/Mexicana/mexico1.tres" id="3_1k44g"]
+[ext_resource type="Resource" uid="uid://dvt4a18bn1q1l" path="res://resources/CarnavalCadiz/carnaval1.tres" id="3_c6n8p"]
+[ext_resource type="Resource" uid="uid://b2yrp27l33j0m" path="res://resources/CarnavalCadiz/carnaval2.tres" id="4_l1jbf"]
+[ext_resource type="Resource" uid="uid://dku11gthqubvg" path="res://resources/Mexicana/mexico2.tres" id="4_nui76"]
+[ext_resource type="Resource" uid="uid://datb6kvjnuphv" path="res://resources/CarnavalCadiz/carnaval3.tres" id="5_042ry"]
+[ext_resource type="Resource" uid="uid://cteaviynul21a" path="res://resources/Mexicana/mexico3.tres" id="5_aoows"]
+[ext_resource type="Resource" uid="uid://2osamkhs008u" path="res://resources/Mexicana/mexico4.tres" id="6_sr3rl"]
+[ext_resource type="Resource" uid="uid://dk51ug6b6pqit" path="res://resources/CarnavalCadiz/carnaval4.tres" id="6_w8vu3"]
+[ext_resource type="Resource" uid="uid://cypa1dhhkg2o3" path="res://resources/CarnavalCadiz/carnaval5.tres" id="7_b3w54"]
+[ext_resource type="Resource" uid="uid://umwyu4ib8pgy" path="res://resources/Mexicana/mexico5.tres" id="7_ktfuw"]
+[ext_resource type="Resource" uid="uid://b4uepq77in0ff" path="res://resources/tiki/tiki1.tres" id="8_ppi3k"]
+[ext_resource type="Resource" uid="uid://dikvb0bdj6lng" path="res://resources/tiki/tiki3.tres" id="9_8j2p5"]
+[ext_resource type="Resource" uid="uid://dbcrdfkpgq4p1" path="res://resources/tiki/tiki2.tres" id="10_hv515"]
+[ext_resource type="Resource" uid="uid://bf63u35vlbmao" path="res://resources/tiki/tiki4.tres" id="11_m5c13"]
+[ext_resource type="Resource" uid="uid://d4hthm6uwm4xy" path="res://resources/tiki/tiki5.tres" id="12_x20te"]
+[ext_resource type="Resource" uid="uid://bsl2wmg2vt87e" path="res://resources/japon/japon1.tres" id="13_1k44g"]
+[ext_resource type="Resource" uid="uid://d2lsomdms5jnx" path="res://resources/japon/japon2.tres" id="14_nui76"]
+[ext_resource type="Resource" uid="uid://c2cc4w6uds0pf" path="res://resources/japon/japon3.tres" id="15_aoows"]
+[ext_resource type="Resource" uid="uid://cabbybb6ppihj" path="res://resources/japon/japon5.tres" id="16_sr3rl"]
+[ext_resource type="Resource" uid="uid://bbeni7lyld7gx" path="res://resources/japon/japon4.tres" id="17_ktfuw"]
 [ext_resource type="Texture2D" uid="uid://bipifegsk5b6h" path="res://Assets/pj/pj2.png" id="22_x20te"]
 
 [node name="Invitado" type="Control"]
@@ -29,10 +30,11 @@ z_index = -50
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_oebdd")
-mascaras_mexicanas = Array[ExtResource("2_m5c13")]([ExtResource("3_x20te"), ExtResource("4_1k44g"), ExtResource("5_nui76"), ExtResource("6_aoows"), ExtResource("7_sr3rl")])
-mascaras_tiki = Array[ExtResource("2_m5c13")]([ExtResource("8_ktfuw"), ExtResource("9_e642p"), ExtResource("10_040fu"), ExtResource("11_qqayf"), ExtResource("12_o7750")])
-mascaras_carnaval = Array[ExtResource("2_m5c13")]([ExtResource("13_egyrs"), ExtResource("14_sgdo2"), ExtResource("15_7y78i"), ExtResource("16_sj07f"), ExtResource("17_4hrnb")])
-mascaras_japon = Array[ExtResource("2_m5c13")]([ExtResource("18_rv72e"), ExtResource("19_oj1fu"), ExtResource("20_q6ist"), ExtResource("21_b3cf0"), ExtResource("17_4hrnb")])
+mascaras_mexicanas = Array[ExtResource("2_m5c13")]([ExtResource("3_1k44g"), ExtResource("4_nui76"), ExtResource("5_aoows"), ExtResource("6_sr3rl"), ExtResource("7_ktfuw")])
+mascaras_tiki = Array[ExtResource("2_m5c13")]([ExtResource("8_ppi3k"), ExtResource("9_8j2p5"), ExtResource("10_hv515"), ExtResource("11_m5c13"), ExtResource("12_x20te")])
+mascaras_carnaval = Array[ExtResource("2_m5c13")]([ExtResource("3_c6n8p"), ExtResource("4_l1jbf"), ExtResource("5_042ry"), ExtResource("6_w8vu3"), ExtResource("7_b3w54")])
+mascaras_japon = Array[ExtResource("2_m5c13")]([ExtResource("13_1k44g"), ExtResource("14_nui76"), ExtResource("15_aoows"), ExtResource("16_sr3rl"), ExtResource("17_ktfuw")])
+prob_vip = 0.05
 
 [node name="Cliente" type="TextureRect" parent="."]
 layout_mode = 0
@@ -44,12 +46,13 @@ texture = ExtResource("22_x20te")
 
 [node name="Mascaras" type="TextureRect" parent="Cliente"]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 4.0
-offset_right = 148.0
-offset_bottom = 132.0
+offset_left = -34.0
+offset_top = -57.0
+offset_right = 207.0
+offset_bottom = 182.0
 texture = ExtResource("2_eqnrb")
 expand_mode = 2
+stretch_mode = 4
 
 [node name="TiempoLimite" type="Timer" parent="."]
 wait_time = 5.0

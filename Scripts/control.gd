@@ -206,6 +206,7 @@ func obtener_otra_categoria(actual: String) -> String:
 
 func _generar_mascara() -> void:
 	if categoria_actual == "":
+		print(mascarasDict.keys())
 		categoria_actual = mascarasDict.keys().pick_random()
 
 	if randf() <= 0.5:

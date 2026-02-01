@@ -15,19 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1rerr")
 
-[node name="LabelLeaderBoard" type="Label" parent="."]
-layout_mode = 0
-offset_left = 656.0
-offset_top = 424.0
-offset_right = 1023.0
-offset_bottom = 559.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_wbdvm")
-theme_override_font_sizes/font_size = 64
-text = "LeaderBoard"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BotonPlay" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 216.0
@@ -76,6 +63,16 @@ position = Vector2(576, 432)
 texture = ExtResource("2_xhh6f")
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.28500003
+offset_left = 638.0
+offset_top = 783.0
+offset_right = 882.0
+offset_bottom = 595.76
+theme_override_font_sizes/font_size = 30
 
 [connection signal="mouse_entered" from="BotonPlay" to="." method="_on_boton_play_mouse_entered"]
 [connection signal="mouse_exited" from="BotonPlay" to="." method="_on_boton_play_mouse_exited"]
