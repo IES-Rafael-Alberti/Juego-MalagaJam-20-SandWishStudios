@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://10aipp4jmgtd"]
+[gd_scene load_steps=4 format=3 uid="uid://10aipp4jmgtd"]
 
 [ext_resource type="Script" uid="uid://b130i3slrurbc" path="res://addons/talo/samples/leaderboards/scripts/leaderboard.gd" id="1_ul1ks"]
 [ext_resource type="Theme" uid="uid://ce2uyi827vc5x" path="res://addons/talo/samples/authentication/assets/theme.tres" id="2_aw1ey"]
+[ext_resource type="Texture2D" uid="uid://b6b8pac14kwgq" path="res://Assets/ui/Score.png" id="2_c6q6l"]
 
 [node name="Leaderboard" type="Node2D"]
 script = ExtResource("1_ul1ks")
@@ -13,20 +14,25 @@ anchors_preset = 0
 offset_right = 1080.0
 offset_bottom = 720.0
 
-[node name="Background" type="ColorRect" parent="UI"]
+[node name="Background" type="TextureRect" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 71.0
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.121569, 0.160784, 0.215686, 1)
+texture = ExtResource("2_c6q6l")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 73.0
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 40
@@ -99,14 +105,14 @@ custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_aw1ey")
-text = "Add entry"
+text = "Try Again"
 
 [node name="exit" type="Button" parent="UI/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_aw1ey")
-text = "Add entry"
+text = "Exit to Menu"
 
 [connection signal="pressed" from="UI/MarginContainer/VBoxContainer/Submit" to="." method="_on_submit_pressed"]
 [connection signal="pressed" from="UI/MarginContainer/VBoxContainer/Filter" to="." method="_on_filter_pressed"]
