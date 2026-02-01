@@ -4,6 +4,10 @@ extends Control
 @onready var salir: TextureButton = $TextureRect/Salir
 @onready var puntuacionLb: Label = $TextureRect/puntuacionLb
 
+@onready var bgm: AudioStreamPlayer = $BGM
+
+var audio_manager : Audio
+
 var puntosBase: int = 0
 var multiplicador: float = 1.0
 var total_final: int = 0
@@ -15,6 +19,10 @@ func _ready() -> void:
 
 	total_final = int(round(puntosBase * multiplicador))
 	await animacion_puntuacion(puntosBase, total_final, 1.0)
+	
+	audio_manager = Audio.new()
+	audio_manager.set_player(bgm)
+	audio_manager.playMenu()
 
 func _on_reiniciar_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
