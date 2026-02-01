@@ -241,6 +241,8 @@ func _on_boton_no_pressed() -> void:
 
 	if mascara_categoria != categoria_actual:
 		aumentar_puntuacion()
+		if esvip:
+			get_parent().multiplicador += inc_vip
 	else:
 		reducir_puntuacion(1)
 
